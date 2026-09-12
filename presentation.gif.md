@@ -271,7 +271,7 @@ Miguel Ureña-Pliego<sup>1,*</sup>, Javier Rodríguez-Saiz<sup>1,2</sup>, Javier
 
 </div>
 
-<span class="slide-ref">[Marconcini et al., 2021](https://www.frontiersin.org/journals/built-environment/articles/10.3389/fbuil.2025.1590479/full)</span>
+<span class="slide-ref">[Wang et al., 2019](https://doi.org/10.5281/zenodo.3483208)</span>
 
 ---
 
@@ -334,13 +334,12 @@ Miguel Ureña-Pliego<sup>1,*</sup>, Javier Rodríguez-Saiz<sup>1,2</sup>, Javier
 <p class="apa-ref">Brzev, S., Scawthorn, C., Silva, V., et al. (2013). <em>GEM building taxonomy version 2.0</em>. https://doi.org/10.13117/GEM.EXP-MOD.TR2013.02</p>
 <p class="apa-ref">GEM Foundation. (n.d.). <em>Dominican Republic exposure model</em> [Data set]. OpenQuake Global Risk Model. https://docs.openquake.org/global_risk_model/exposure/Caribbean_Central_America/Dominican_Republic/README.html</p>
 <p class="apa-ref">GeomaticsCaminosUPM. (n.d.). <em>footprint_attributes</em> [Computer software]. GitHub. https://github.com/GeomaticsCaminosUPM/footprint_attributes</p>
-<p class="apa-ref">Hollmann, N., Müller, S., et al. (2022). <em>TabPFN: A transformer that solves small tabular classification problems in a second</em>. https://doi.org/10.48550/arXiv.2207.01848</p>
-<p class="apa-ref">Hollmann, N., Müller, S., et al. (2025). Accurate predictions on small data with a tabular foundation model. <em>Nature</em>. https://doi.org/10.1038/s41586-024-08328-6</p>
 <p class="apa-ref">Jiménez-Martínez, M., Navas-Sánchez, L., et al. (2024). A methodology to assess and select seismic fragility curves: Calibration from expert survey and fuzzy analysis. <em>International Journal of Disaster Risk Reduction</em>. https://doi.org/10.1016/j.ijdrr.2024.104930</p>
 <p class="apa-ref">Marconcini, M., Esch, T., et al. (2021). Understanding current trends in global urbanisation: The World Settlement Footprint suite. <em>GI_Forum</em>. https://doi.org/10.1553/giscience2021_01_s33</p>
 <p class="apa-ref">Torres, Y., Martínez-Cuevas, S., et al. (2023). Using remote sensing for exposure and seismic vulnerability evaluation: Is it reliable? <em>International Journal of Remote Sensing</em>. https://doi.org/10.1080/15481603.2023.2196162</p>
 <p class="apa-ref">Torres-Olivares, S., et al. (2025). Numerical study on the seismic behavior of aggregate reinforced concrete block masonry buildings. <em>Bulletin of Earthquake Engineering</em>. https://doi.org/10.1007/s10518-025-02262-2</p>
 <p class="apa-ref">Ureña-Pliego, M., Rodríguez-Saiz, J., Núñez-Álvarez, G., Marchamalo-Sacristán, M., &amp; González-Rodrigo, B. (2026). A methodology for the automated estimation of footprint-derived seismic behaviour modifiers in building exposure assessment. <em>Advanced Modeling and Simulation in Engineering Sciences</em>, <em>13</em>(1), Article 3. https://doi.org/10.1186/s40323-026-00323-y</p>
+<p class="apa-ref">Wang, C., Yu, Q., McKenna, F., Cetiner, B., Yu, S. X., Taciroglu, E., &amp; Law, K. H. (2019). <em>NHERI-SimCenter/BRAILS: v1.0.1</em> [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.3483208</p>
 <p class="apa-ref">Yepes-Estrada, C., Calderon, A., et al. (2023). Global building exposure model for earthquake risk assessment. <em>Earthquake Spectra</em>. https://doi.org/10.1177/87552930231194048</p>
 <p class="apa-ref">Zhu, X. X., Chen, S., Zhang, F., Shi, Y., &amp; Wang, Y. (2025). GlobalBuildingAtlas: An open global and complete dataset of building polygons, heights and LoD1 3D models. <em>Earth System Science Data</em>, <em>17</em>(12), 6647–6668. https://doi.org/10.5194/essd-17-6647-2025</p>
 

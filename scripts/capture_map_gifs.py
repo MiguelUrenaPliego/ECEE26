@@ -43,10 +43,14 @@ OUT_DIR = ROOT / "figures" / "maps_gif"
 # while still shrinking the file size.
 VIEWPORT_WIDTH = 1600
 VIEWPORT_HEIGHT = 900
-OUTPUT_WIDTH = 1280
-OUTPUT_HEIGHT = 720
-JPEG_QUALITY = 60          # per-frame lossy compression before GIF-quantizing
-GIF_MAX_COLORS = 128       # smaller palette -> smaller GIF
+DEVICE_SCALE_FACTOR = 2    # renders at 2x pixel density (CSS layout/proportions
+                           # unchanged) so the screenshot is sharp before the
+                           # JPEG's static image gets embedded and scaled up
+                           # inside a PDF page.
+OUTPUT_WIDTH = 1920
+OUTPUT_HEIGHT = 1080
+JPEG_QUALITY = 85          # per-frame lossy compression before GIF-quantizing
+GIF_MAX_COLORS = 160       # smaller palette -> smaller GIF
 FRAME_DURATION_MS = 10000  # "keep passing every 10s"
 
 PORT = 8934
@@ -124,7 +128,10 @@ def main():
     try:
         with sync_playwright() as p:
             browser = p.chromium.launch()
-            page = browser.new_page(viewport={"width": VIEWPORT_WIDTH, "height": VIEWPORT_HEIGHT})
+            page = browser.new_page(
+                viewport={"width": VIEWPORT_WIDTH, "height": VIEWPORT_HEIGHT},
+                device_scale_factor=DEVICE_SCALE_FACTOR,
+            )
             for entry in manifest:
                 try:
                     frames = capture_map(page, entry)
