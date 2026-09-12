@@ -254,6 +254,28 @@ Miguel Ureña-Pliego<sup>1,*</sup>, Javier Rodríguez-Saiz<sup>1,2</sup>, Javier
 
 ---
 
+<!-- _class: figure -->
+
+# Structural system
+
+<div class="cnn-row">
+
+<div class="cnn-images-box">
+<img src="./figures/building_1.jpg">
+<img src="./figures/building_2.jpg">
+</div>
+
+<div class="cnn-arrow">CNN</div>
+
+<div class="cnn-result-box">CR</div>
+
+</div>
+
+<span class="slide-ref">[Marconcini et al., 2021](https://www.frontiersin.org/journals/built-environment/articles/10.3389/fbuil.2025.1590479/full)</span>
+
+---
+
+
 <!-- _class: map -->
 
 # Structural system

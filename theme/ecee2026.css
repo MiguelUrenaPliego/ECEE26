@@ -304,6 +304,57 @@ section.title {
   object-fit: contain;
 }
 
+/* ---- Structural system CNN diagram slide ---- */
+
+.cnn-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
+  width: 100%;
+}
+
+.cnn-images-box {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  border: 3px solid var(--ecee-text);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.cnn-images-box img {
+  width: 260px;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+}
+
+.cnn-arrow {
+  position: relative;
+  width: 170px;
+  height: 68px;
+  background: var(--ecee-red);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  clip-path: polygon(0% 22%, 68% 22%, 68% 0%, 100% 50%, 68% 100%, 68% 78%, 0% 78%);
+}
+
+.cnn-result-box {
+  border: 3px solid var(--ecee-text);
+  border-radius: 8px;
+  padding: 34px 44px;
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--ecee-text);
+}
+
 /* ---- Footprint geometry slide ---- */
 .geometry-row {
   display: flex;
