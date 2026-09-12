@@ -108,7 +108,7 @@ body,
 /* ---------- controls panel ---------- */
 #controls {
   position: absolute;
-  top: 16px;
+  top: 78px;
   left: 16px;
   z-index: 10;
   width: 380px;
@@ -286,6 +286,14 @@ body,
 body.clean-view #controls,
 body.clean-view #charts-panel {
   display: none;
+}
+
+/* &bare=1 (purely decorative embed, e.g. behind the title slide): also drop
+   the icon-button row -- nothing but the map itself should show. */
+body.bare-view .icon-button,
+body.bare-view #building-panel,
+body.bare-view #settings-panel {
+  display: none !important;
 }
 
 .panel-actions {

@@ -134,11 +134,16 @@ const state = {
 
 // ---------------------------------------------------------------------------
 // Map + deck.gl overlay.
-const DARK_STYLE = "https://tiles.openfreemap.org/styles/dark";
+const URL_PARAMS = new URLSearchParams(location.search);
+const DARK_THEME = URL_PARAMS.get("theme") === "dark";
+if (DARK_THEME) document.body.classList.add("theme-dark");
+const MAP_STYLE = DARK_THEME
+  ? "https://tiles.openfreemap.org/styles/dark"
+  : "https://tiles.openfreemap.org/styles/positron";
 
 const map = new maplibregl.Map({
   container: "map",
-  style: DARK_STYLE,
+  style: MAP_STYLE,
   center: [-69.94, 18.46],
   zoom: 15,
   pitch: SHOWCASE_PITCH,
@@ -660,6 +665,7 @@ async function loadDataset(datasetId) {
 
 async function setDataset(datasetId, { fromShowcase = false } = {}) {
   await loadDataset(datasetId);
+  var __h1 = document.querySelector(".subtitle"); if (__h1) __h1.textContent = DATASETS[datasetId].label;
   datasetDropdown?.setValue(datasetId);
   const [[minX, minY], [maxX, maxY]] = computeBbox(state.data);
   map.fitBounds([[minX, minY], [maxX, maxY]], { padding: 60, duration: fromShowcase ? 0 : 500 });

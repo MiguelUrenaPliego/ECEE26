@@ -22,7 +22,7 @@ section {
   font-size: 26px;
   position: relative;
   /* content box: pptx x=838200/y=1825625 ext=10515600x4351338 EMU */
-  padding: 100px 88px 108px 88px;
+  padding: 100px 88px 130px 88px;
   justify-content: flex-start;
 }
 
@@ -106,16 +106,21 @@ section.figure p {
    it comfortably fits a full bibliography. Mark the slide with `refs`.
    ============================================================ */
 
+/* Content box is ~490px tall (100px top padding, 130px reserved for the
+   footer); keep the reference list within that no matter how many entries
+   it grows to -- clip rather than spill into the footer band. */
 section.refs .apa-refs {
   columns: 2;
   column-gap: 48px;
-  margin-top: 16px;
+  margin-top: 12px;
+  max-height: 480px;
+  overflow: hidden;
 }
 
 section.refs .apa-ref {
-  font-size: 15px;
-  line-height: 1.5;
-  margin: 0 0 14px 0;
+  font-size: 14px;
+  line-height: 1.4;
+  margin: 0 0 11px 0;
   padding-left: 24px;
   text-indent: -24px;
   break-inside: avoid;
@@ -138,8 +143,8 @@ footer {
 footer img.logo-ecee {
   position: absolute;
   left: 14px;
-  top: 646px;
-  width: 212px;
+  top: 606px;
+  width: 240px;
   height: auto;
   z-index: 1;
 }
@@ -155,7 +160,7 @@ footer::before {
   position: absolute;
   left: 0;
   right: 0;
-  top: 640px;
+  top: 600px;
   height: 2px;
   background: var(--ecee-yellow);
   z-index: 0;
@@ -163,30 +168,30 @@ footer::before {
 
 footer img.logo-rptu {
   position: absolute;
-  right: 108px;
-  top: 656px;
-  width: 84px;
-  height: 31px;
+  right: 118px;
+  top: 616px;
+  width: 100px;
+  height: 37px;
   z-index: 1;
 }
 
 footer img.logo-tuberlin {
   position: absolute;
   right: 14px;
-  top: 663px;
-  width: 72px;
-  height: 25px;
+  top: 623px;
+  width: 86px;
+  height: 30px;
   z-index: 1;
 }
 
 footer .footer-caption {
   position: absolute;
-  left: 236px;
-  top: 645px;
-  right: 204px;
+  left: 264px;
+  top: 605px;
+  right: 228px;
   text-align: center;
-  font-size: 13px;
-  line-height: 1.25;
+  font-size: 20px;
+  line-height: 1.3;
   color: var(--ecee-gray);
   font-family: Arial, Helvetica, sans-serif;
   z-index: 1;
@@ -229,13 +234,126 @@ section.title {
    Add <iframe class="bg-map-frame" src="./maps/intro/index.html?view=attributes_noplot"></iframe>
    as the FIRST element inside a `title`-class slide to turn this on;
    delete that one line to turn it back off. */
+/* Inline (non-full-bleed) map embeds — sizing lives here as CSS classes,
+   not inline `style=`, because Marp strips `style`/`data-*` attributes off
+   any hand-written HTML tag in markdown (even with `html: true`); only
+   `class` survives, which is also how scripts/inject_maps.py and
+   scripts/build_presentation_variants.py identify which map a `.map-slot`
+   placeholder is for (via a `map-slot--<name>` class, looked up against
+   maps_manifest.json) since `data-map-name` doesn't survive either. */
+.gem-exposure-bg {
+  width: 56%;
+  height: 470px;
+  border: none;
+}
+
+.conclusion-item {
+  width: 32%;
+  height: 420px;
+  border: 1px solid #ccc;
+}
+
+.conclusion-row {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 16px;
+}
+
+.conclusion-figure {
+  border: none;
+  object-fit: contain;
+}
+
+.gem-row {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.gem-figure {
+  width: 40%;
+  max-height: 470px;
+  object-fit: contain;
+}
+
+.relpos-figure {
+  max-width: 70%;
+  max-height: 470px;
+  object-fit: contain;
+}
+
+.shape-row {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.shape-figure {
+  max-width: 48%;
+  max-height: 460px;
+  object-fit: contain;
+}
+
+/* ---- Footprint geometry slide ---- */
+.geometry-row {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 440px;
+}
+
+.geometry-col-table {
+  flex: 1;
+  font-size: 20px;
+  line-height: 1.3;
+}
+
+.geom-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.geom-table th,
+.geom-table td {
+  border: 1px solid #999;
+  padding: 10px 18px;
+}
+
+.geometry-col-images {
+  flex: 1;
+  max-width: 380px;
+}
+
+.geometry-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.geometry-thumb img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
 .bg-map-frame {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   border: none;
-  opacity: 0.5;
+  opacity: 0.22;
   z-index: 0;
   pointer-events: none;
 }
@@ -273,6 +391,17 @@ section.title .affiliations {
 
 section.title .affiliations a {
   color: #0563c1;
+}
+
+.contact-icon-link {
+  white-space: nowrap;
+}
+
+.contact-icon {
+  width: 15px;
+  height: 15px;
+  vertical-align: -2px;
+  border-radius: 3px;
 }
 
 /* -- header row: funding logos (left) + RISK CARIBERIA (right), flush to
@@ -344,9 +473,9 @@ section.title footer img.logo-tuberlin {
 section.title footer .footer-caption {
   left: 438px;
   right: auto;
-  top: 636px;
+  top: 638px;
   width: 452px;
-  font-size: 18px;
+  font-size: 20px;
   line-height: 1.3;
 }
 
@@ -359,7 +488,7 @@ section.title footer .footer-caption {
 .slide-ref {
   position: absolute;
   right: 40px;
-  bottom: calc(720px - 640px + 6px);
+  bottom: calc(720px - 600px + 6px);
   font-size: 12px;
   color: var(--ecee-gray);
   font-family: Arial, Helvetica, sans-serif;
@@ -383,7 +512,8 @@ section.map {
 }
 
 section.map > img,
-section.map > iframe {
+section.map > iframe,
+section.map > div.map-slot {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -418,18 +548,18 @@ section.map footer::after {
   left: 0;
   right: 0;
   bottom: 0;
-  height: 92px;
-  background: linear-gradient(to top, rgba(255, 255, 255, 0.88) 0%, rgba(255, 255, 255, 0.88) 70%, rgba(255, 255, 255, 0) 100%);
+  height: 88px;
+  background: linear-gradient(to top, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0.92) 82%, rgba(255, 255, 255, 0) 100%);
   z-index: 0;
 }
 
 section.map footer img.logo-ecee {
-  width: 190px;
+  width: 210px;
   height: auto;
 }
 
 section.map footer .footer-caption {
-  font-size: 12px;
+  font-size: 16px;
 }
 
 section.map::after {

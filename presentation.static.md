@@ -3,15 +3,16 @@ marp: true
 theme: ecee2026
 paginate: true
 html: true
-footer: '<img class="logo-ecee" src="./assets/ecee2026_logo.png" alt="ECEE2026 logo" /><img class="skyline" src="./assets/skyline_footer.png" alt="" /><img class="logo-rptu" src="./assets/rptu_logo.png" alt="RPTU logo" /><img class="logo-tuberlin" src="./assets/tuberlin_logo.png" alt="TU Berlin logo" /><span class="footer-caption">ML structural system classification<br>Ureña-Pliego et al.<br><a href="https://github.com/MiguelUrenaPliego/ECEE26">github.com/MiguelUrenaPliego/ECEE26</a></span>'
+footer: '<img class="logo-ecee" src="./assets/ecee2026_logo.png" alt="ECEE2026 logo" /><img class="skyline" src="./assets/skyline_footer.png" alt="" /><img class="logo-rptu" src="./assets/rptu_logo.png" alt="RPTU logo" /><img class="logo-tuberlin" src="./assets/tuberlin_logo.png" alt="TU Berlin logo" /><span class="footer-caption">ML structural system classification<br>Ureña-Pliego et al.<br><a href="https://miguelurenapliego.github.io/ECEE26/">miguelurenapliego.github.io/ECEE26</a></span>'
 ---
 
 <!-- _class: title -->
 <!-- _paginate: false -->
 <!-- _header: '<img class="logos-top-left" src="./logos/all_logos_in_one_line_left.jpeg" alt="Funding and partner logos" /><img class="logo-riskcar" src="./logos/logo_riskcar.jpeg" alt="RISK CARIBERIA logo" />' -->
 
-<!-- Optional faded background map. Delete this one line to turn it off. -->
-<iframe class="bg-map-frame" src="./maps/intro/index.html?view=attributes_noplot"></iframe>
+<!-- Optional faded background map. Delete these two lines to turn it off. -->
+<!-- MAP:title_bg -->
+<img src="./figures/maps_gif/title_bg.jpg" alt="title bg map" class="bg-map-frame">
 
 # Machine learning classification of structural systems using exclusively geospatial and remote sensing attributes: A case study in Santo Domingo, Dominican Republic
 
@@ -30,7 +31,7 @@ Miguel Ureña-Pliego<sup>1,*</sup>, Javier Rodríguez-Saiz<sup>1,2</sup>, Javier
 <sup>5</sup> ENSAM Institute of Technology, Paris, France
 <sup>6</sup> Departamento de Ingeniería y Gestión Forestal, ETSIMFYMN, Universidad Politécnica de Madrid, Spain
 <sup>7</sup> Centro de I+D+i en Infraestructuras Inteligentes y Sostenibles (CIVILis), ETSICCP, Universidad Politécnica de Madrid, Spain
-<br>* Corresponding author: Miguel Ureña-Pliego — <a href="mailto:miguel.urena@upm.es">miguel.urena@upm.es</a>
+<br>* Corresponding author: Miguel Ureña-Pliego — <a href="mailto:miguel.urena@upm.es">miguel.urena@upm.es</a> &nbsp;<a href="https://www.linkedin.com/in/miguel-urena-pliego/" class="contact-icon-link"><img src="./assets/icon_linkedin.png" class="contact-icon"> LinkedIn</a> &nbsp;<a href="https://github.com/MiguelUrenaPliego" class="contact-icon-link"><img src="./assets/icon_github.png" class="contact-icon"> GitHub</a>
 
 </div>
 
@@ -50,10 +51,10 @@ Miguel Ureña-Pliego<sup>1,*</sup>, Javier Rodríguez-Saiz<sup>1,2</sup>, Javier
 
 # Background: GEM exposure models
 
-<div style="display:flex; gap:24px; align-items:center; justify-content:center; width:100%;">
-<!-- MAP:gem_exposure (static fallback) -->
-<img src="./figures/maps_gif/gem_exposure.jpg" alt="gem exposure map" style="width:56%; height:470px;">
-<img src="./figures/buildings_simulation.jpg" style="width:40%; max-height:470px; object-fit:contain;">
+<div class="gem-row">
+<!-- MAP:gem_exposure -->
+<img src="./figures/maps_gif/gem_exposure.jpg" alt="gem exposure map" class="gem-exposure-bg">
+<img src="./figures/buildings_simulation.jpg" class="gem-figure">
 </div>
 
 <span class="slide-ref">GEM Foundation, n.d.</span>
@@ -70,106 +71,96 @@ Miguel Ureña-Pliego<sup>1,*</sup>, Javier Rodríguez-Saiz<sup>1,2</sup>, Javier
 
 ---
 
-# Results
 
----
 
 <!-- _class: map -->
 
-<!-- MAP:intro (static fallback) -->
+# Results
+
+<!-- MAP:intro -->
 <img src="./figures/maps_gif/intro.jpg" alt="intro map">
 
 ---
 
 <!-- _class: map -->
 
-# Attribute tour
-
-<!-- MAP:intro_attributes (static fallback) -->
+<!-- MAP:intro_attributes -->
 <img src="./figures/maps_gif/intro_attributes.jpg" alt="intro attributes map">
 
 ---
 
 # Footprint geometry
 
-<div style="display:flex; gap:30px; align-items:center; justify-content:center; width:100%; min-height:470px;">
+<div class="geometry-row">
 
-<div style="flex:1; font-size:20px; line-height:1.3;">
+<div class="geometry-col-table">
 
-<table style="border-collapse:collapse; width:100%;">
+<table class="geom-table">
 <thead>
 <tr>
-<th style="border:1px solid #999; padding:10px 18px;">Metric</th>
-<th style="border:1px solid #999; padding:10px 28px;">Mask2Former</th>
-<th style="border:1px solid #999; padding:10px 28px;">SAM2</th>
-<th style="border:1px solid #999; padding:10px 28px;">Microsoft</th>
+<th>Metric</th>
+<th>Mask2Former</th>
+<th>SAM2</th>
+<th>Microsoft</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="border:1px solid #999; padding:10px 18px;">AJ</td>
-<td style="border:1px solid #999; padding:10px 28px;">0.580</td>
-<td style="border:1px solid #999; padding:10px 28px;">0.630</td>
-<td style="border:1px solid #999; padding:10px 28px;">0.099</td>
+<td>AJ</td>
+<td>0.580</td>
+<td>0.630</td>
+<td>0.099</td>
 </tr>
 <tr>
-<td style="border:1px solid #999; padding:10px 18px;">SBD</td>
-<td style="border:1px solid #999; padding:10px 28px;">0.560</td>
-<td style="border:1px solid #999; padding:10px 28px;">0.737</td>
-<td style="border:1px solid #999; padding:10px 28px;">0.124</td>
+<td>SBD</td>
+<td>0.560</td>
+<td>0.737</td>
+<td>0.124</td>
 </tr>
 <tr>
-<td style="border:1px solid #999; padding:10px 18px;">PQ</td>
-<td style="border:1px solid #999; padding:10px 28px;">0.446</td>
-<td style="border:1px solid #999; padding:10px 28px;">0.530</td>
-<td style="border:1px solid #999; padding:10px 28px;">0.002</td>
+<td>PQ</td>
+<td>0.446</td>
+<td>0.530</td>
+<td>0.002</td>
 </tr>
 <tr>
-<td style="border:1px solid #999; padding:10px 18px;">mAP</td>
-<td style="border:1px solid #999; padding:10px 28px;">0.224</td>
-<td style="border:1px solid #999; padding:10px 28px;">0.277</td>
-<td style="border:1px solid #999; padding:10px 28px;">0.0003</td>
+<td>mAP</td>
+<td>0.224</td>
+<td>0.277</td>
+<td>0.0003</td>
 </tr>
 <tr>
-<td style="border:1px solid #999; padding:10px 18px;">sAP</td>
-<td style="border:1px solid #999; padding:10px 28px;">0.370</td>
-<td style="border:1px solid #999; padding:10px 28px;">0.526</td>
-<td style="border:1px solid #999; padding:10px 28px;">0.044</td>
+<td>sAP</td>
+<td>0.370</td>
+<td>0.526</td>
+<td>0.044</td>
 </tr>
 </tbody>
 </table>
 
 </div>
 
-<div style="flex:1; max-width:460px;">
+<div class="geometry-col-images">
 
-<div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; font-size:16px; text-align:center">
+<div class="geometry-grid">
 
-<div>
-<div style="width:100%; aspect-ratio:1/1;">
-<img src="figures/sd_30cm_gt.jpg" style="width:100%; height:100%; object-fit:cover;">
-</div>
+<div class="geometry-thumb">
+<img src="figures/sd_30cm_gt.jpg">
 <div>Santo Domingo GT</div>
 </div>
 
-<div>
-<div style="width:100%; aspect-ratio:1/1;">
-<img src="figures/mask2former_sd_30cm.jpg" style="width:100%; height:100%; object-fit:cover;">
-</div>
+<div class="geometry-thumb">
+<img src="figures/mask2former_sd_30cm.jpg">
 <div>Mask2Former</div>
 </div>
 
-<div>
-<div style="width:100%; aspect-ratio:1/1;">
-<img src="figures/SAM2_sd.jpg" style="width:100%; height:100%; object-fit:cover;">
-</div>
+<div class="geometry-thumb">
+<img src="figures/SAM2_sd.jpg">
 <div>SAM2</div>
 </div>
 
-<div>
-<div style="width:100%; aspect-ratio:1/1;">
-<img src="figures/santo_domingo_microsoft.jpg" style="width:100%; height:100%; object-fit:cover;">
-</div>
+<div class="geometry-thumb">
+<img src="figures/santo_domingo_microsoft.jpg">
 <div>Microsoft</div>
 </div>
 
@@ -185,7 +176,9 @@ Miguel Ureña-Pliego<sup>1,*</sup>, Javier Rodríguez-Saiz<sup>1,2</sup>, Javier
 
 <!-- _class: map -->
 
-<!-- MAP:height (static fallback) -->
+# Height 
+
+<!-- MAP:height -->
 <img src="./figures/maps_gif/height.jpg" alt="height map">
 
 <span class="slide-ref">Zhu et al., 2025</span>
@@ -196,46 +189,52 @@ Miguel Ureña-Pliego<sup>1,*</sup>, Javier Rodríguez-Saiz<sup>1,2</sup>, Javier
 
 # Relative position within a block
 
-<img src="./figures/relative_position_explanation.jpg" style="max-width:70%; max-height:470px; object-fit:contain;">
+<img src="./figures/relative_position_explanation.jpg" class="relpos-figure">
 
-<span class="slide-ref">Ureña Pliego et al., 2025</span>
+<span class="slide-ref">Ureña-Pliego et al., 2026</span>
 
 ---
 
 <!-- _class: map -->
 
-<!-- MAP:relative_position (static fallback) -->
+# Relative position within a block
+
+<!-- MAP:relative_position -->
 <img src="./figures/maps_gif/relative_position.jpg" alt="relative position map">
 
-<span class="slide-ref">Ureña Pliego et al., 2025</span>
+<span class="slide-ref">Ureña-Pliego et al., 2026</span>
 
 ---
 
 <!-- _class: figure -->
 
-# Footprint shape quantification
+# Footprint shape
 
-<div style="display:flex; gap:28px; align-items:center; justify-content:center; width:100%;">
-<img src="./figures/box_idealization_and_eccentricity.jpg" style="max-width:48%; max-height:460px; object-fit:contain;">
-<img src="./figures/basic_lengths_example.jpg" style="max-width:48%; max-height:460px; object-fit:contain;">
+<div class="shape-row">
+<img src="./figures/box_idealization_and_eccentricity.jpg" class="shape-figure">
+<img src="./figures/basic_lengths_example.jpg" class="shape-figure">
 </div>
 
-<span class="slide-ref">Ureña Pliego et al., 2025</span>
+<span class="slide-ref">Ureña-Pliego et al., 2026</span>
 
 ---
 
 <!-- _class: map -->
 
-<!-- MAP:shape_parameters (static fallback) -->
+# Footprint shape
+
+<!-- MAP:shape_parameters -->
 <img src="./figures/maps_gif/shape_parameters.jpg" alt="shape parameters map">
 
-<span class="slide-ref">Ureña Pliego et al., 2025</span>
+<span class="slide-ref">Ureña-Pliego et al., 2026</span>
 
 ---
 
 <!-- _class: map -->
 
-<!-- MAP:roof_material (static fallback) -->
+# Roof cover material
+
+<!-- MAP:roof_material -->
 <img src="./figures/maps_gif/roof_material.jpg" alt="roof material map">
 
 <span class="slide-ref">Torres et al., 2023</span>
@@ -244,53 +243,59 @@ Miguel Ureña-Pliego<sup>1,*</sup>, Javier Rodríguez-Saiz<sup>1,2</sup>, Javier
 
 <!-- _class: map -->
 
-<!-- MAP:year (static fallback) -->
+# Construction or modification year 
+
+<!-- MAP:year -->
 <img src="./figures/maps_gif/year.jpg" alt="year map">
 
 <span class="slide-ref">Marconcini et al., 2021</span>
 
 ---
 
-# Structural system
-
----
-
 <!-- _class: map -->
 
-<!-- MAP:structural_system_split (static fallback) -->
+# Structural system
+
+<!-- MAP:structural_system_split -->
 <img src="./figures/maps_gif/structural_system_split.jpg" alt="structural system split map">
 
 ---
 
 <!-- _class: map -->
 
-<!-- MAP:structural_system_metrics (static fallback) -->
+# Structural system
+
+<!-- MAP:structural_system_metrics -->
 <img src="./figures/maps_gif/structural_system_metrics.jpg" alt="structural system metrics map">
 
 ---
 
 <!-- _class: map -->
 
-<!-- MAP:structural_system_feature_importance (static fallback) -->
+# Structural system
+
+<!-- MAP:structural_system_feature_importance -->
 <img src="./figures/maps_gif/structural_system_feature_importance.jpg" alt="structural system feature importance map">
 
 ---
 
 <!-- _class: map -->
 
-<!-- MAP:structural_system_comparison (static fallback) -->
+# Structural system
+
+<!-- MAP:structural_system_comparison -->
 <img src="./figures/maps_gif/structural_system_comparison.jpg" alt="structural system comparison map">
 
 ---
 
 # Conclusion
 
-<div style="display:flex; gap:20px; align-items:center; justify-content:center; width:100%; margin-top:16px;">
-<!-- MAP:gem_exposure (static fallback) -->
-<img src="./figures/maps_gif/gem_exposure.jpg" alt="gem exposure map" style="width:32%; height:420px;">
-<!-- MAP:intro_conclusion (static fallback) -->
-<img src="./figures/maps_gif/intro_conclusion.jpg" alt="intro conclusion map" style="width:32%; height:420px;">
-<img src="./figures/buildings_simulation.jpg" style="width:32%; height:420px; object-fit:contain;">
+<div class="conclusion-row">
+<!-- MAP:gem_exposure -->
+<img src="./figures/maps_gif/gem_exposure.jpg" alt="gem exposure map" class="conclusion-item">
+<!-- MAP:intro_conclusion -->
+<img src="./figures/maps_gif/intro_conclusion.jpg" alt="intro conclusion map" class="conclusion-item">
+<img src="./figures/buildings_simulation.jpg" class="conclusion-item conclusion-figure">
 </div>
 
 ---
@@ -311,7 +316,7 @@ Miguel Ureña-Pliego<sup>1,*</sup>, Javier Rodríguez-Saiz<sup>1,2</sup>, Javier
 <p class="apa-ref">Marconcini, M., Esch, T., et al. (2021). Understanding current trends in global urbanisation: The World Settlement Footprint suite. <em>GI_Forum</em>. https://doi.org/10.1553/giscience2021_01_s33</p>
 <p class="apa-ref">Torres, Y., Martínez-Cuevas, S., et al. (2023). Using remote sensing for exposure and seismic vulnerability evaluation: Is it reliable? <em>International Journal of Remote Sensing</em>. https://doi.org/10.1080/15481603.2023.2196162</p>
 <p class="apa-ref">Torres-Olivares, S., et al. (2025). Numerical study on the seismic behavior of aggregate reinforced concrete block masonry buildings. <em>Bulletin of Earthquake Engineering</em>. https://doi.org/10.1007/s10518-025-02262-2</p>
-<p class="apa-ref">Ureña Pliego, M., Rodríguez Saiz, J., et al. (2025). <em>A methodology for the automated estimation of seismic behavior modifiers from building footprints</em> [Preprint]. SSRN. https://www.ssrn.com/abstract=5419010</p>
+<p class="apa-ref">Ureña-Pliego, M., Rodríguez-Saiz, J., Núñez-Álvarez, G., Marchamalo-Sacristán, M., &amp; González-Rodrigo, B. (2026). A methodology for the automated estimation of footprint-derived seismic behaviour modifiers in building exposure assessment. <em>Advanced Modeling and Simulation in Engineering Sciences</em>, <em>13</em>(1), Article 3. https://doi.org/10.1186/s40323-026-00323-y</p>
 <p class="apa-ref">Yepes-Estrada, C., Calderon, A., et al. (2023). Global building exposure model for earthquake risk assessment. <em>Earthquake Spectra</em>. https://doi.org/10.1177/87552930231194048</p>
 <p class="apa-ref">Zhu, X. X., Chen, S., Zhang, F., Shi, Y., &amp; Wang, Y. (2025). GlobalBuildingAtlas: An open global and complete dataset of building polygons, heights and LoD1 3D models. <em>Earth System Science Data</em>, <em>17</em>(12), 6647–6668. https://doi.org/10.5194/essd-17-6647-2025</p>
 
@@ -323,8 +328,9 @@ Miguel Ureña-Pliego<sup>1,*</sup>, Javier Rodríguez-Saiz<sup>1,2</sup>, Javier
 <!-- _paginate: false -->
 <!-- _header: '<img class="logos-top-left" src="./logos/all_logos_in_one_line_left.jpeg" alt="Funding and partner logos" /><img class="logo-riskcar" src="./logos/logo_riskcar.jpeg" alt="RISK CARIBERIA logo" />' -->
 
-<!-- Optional faded background map. Delete this one line to turn it off. -->
-<iframe class="bg-map-frame" src="./maps/intro/index.html?view=attributes_noplot"></iframe>
+<!-- Optional faded background map. Delete these two lines to turn it off. -->
+<!-- MAP:title_bg -->
+<img src="./figures/maps_gif/title_bg.jpg" alt="title bg map" class="bg-map-frame">
 
 # Thank you
 
@@ -343,39 +349,26 @@ Miguel Ureña-Pliego<sup>1,*</sup>, Javier Rodríguez-Saiz<sup>1,2</sup>, Javier
 <sup>5</sup> ENSAM Institute of Technology, Paris, France
 <sup>6</sup> Departamento de Ingeniería y Gestión Forestal, ETSIMFYMN, Universidad Politécnica de Madrid, Spain
 <sup>7</sup> Centro de I+D+i en Infraestructuras Inteligentes y Sostenibles (CIVILis), ETSICCP, Universidad Politécnica de Madrid, Spain
-<br>* Corresponding author: Miguel Ureña-Pliego — <a href="mailto:miguel.urena@upm.es">miguel.urena@upm.es</a>
+<br>* Corresponding author: Miguel Ureña-Pliego — <a href="mailto:miguel.urena@upm.es">miguel.urena@upm.es</a> &nbsp;<a href="https://www.linkedin.com/in/miguel-urena-pliego/" class="contact-icon-link"><img src="./assets/icon_linkedin.png" class="contact-icon"> LinkedIn</a> &nbsp;<a href="https://github.com/MiguelUrenaPliego" class="contact-icon-link"><img src="./assets/icon_github.png" class="contact-icon"> GitHub</a>
 
 </div>
 
-<!-- Fallback: if a live map iframe 404s, can't be fetched (offline), or is
-     opened via file:// (maps need HTTP for their own fetch() calls), swap it
-     for its pre-rendered GIF under figures/maps_gif/. Only active in this
-     "live" presentation.md — the .static.md / .gif.md variants (built by
-     scripts/build_presentation_variants.py) don't need it, they never embed
-     a live iframe in the first place. -->
-<script>
-(function () {
-  function fallback(iframe) {
-    var name = iframe.getAttribute('data-map-name');
-    if (!name || iframe.dataset.fellBack) return;
-    iframe.dataset.fellBack = '1';
-    var img = document.createElement('img');
-    img.src = './figures/maps_gif/' + name + '.gif';
-    img.alt = name.replace(/_/g, ' ') + ' map (offline fallback)';
-    var style = iframe.getAttribute('style');
-    if (style) img.setAttribute('style', style);
-    if (iframe.className) img.className = iframe.className;
-    iframe.replaceWith(img);
-  }
-
-  document.querySelectorAll('iframe[data-map-name]').forEach(function (iframe) {
-    if (location.protocol === 'file:') { fallback(iframe); return; }
-    fetch(iframe.getAttribute('src'), { method: 'HEAD' })
-      .then(function (r) { if (!r.ok) fallback(iframe); })
-      .catch(function () { fallback(iframe); });
-    var loaded = false;
-    iframe.addEventListener('load', function () { loaded = true; });
-    setTimeout(function () { if (!loaded) fallback(iframe); }, 6000);
-  });
-})();
-</script>
+<!-- Every map above is authored as a plain
+     <div class="map-slot map-slot--<name>"> placeholder rather than a real
+     <iframe>: Marp hard-escapes literal <iframe> AND <script> tags in the
+     markdown source (a security restriction that applies even with
+     `html: true`), and ALSO strips `data-*`/`style` attributes off any
+     hand-written tag -- only `class` survives -- so neither a live iframe
+     nor a runtime fallback script nor a data-attribute carrying its URL
+     can survive Marp's own HTML conversion. scripts/inject_maps.py runs
+     AFTER `marp ... -o index.html presentation.md`, editing that
+     already-compiled HTML directly (outside Marp's pipeline, so none of
+     the above restrictions apply) to: look up each `map-slot--<name>`
+     class against maps_manifest.json for its URL, swap the placeholder for
+     a real <iframe src="that URL">, and append the small fallback script
+     that swaps a map for its pre-rendered GIF under figures/maps_gif/ if
+     it 404s, can't be fetched (offline), or the page is opened via
+     file://. See export.md. The .static.md / .gif.md variants (built by
+     scripts/build_presentation_variants.py) don't need any of this -- they
+     replace every placeholder with a plain <img> at markdown level, which
+     Marp has no reason to touch. -->

@@ -9,24 +9,31 @@
       "interval_ms": 4000
     },
     {
+      "name": "title_bg",
+      "url": "maps/intro/index.html?view=attributes_noplot&bare=1",
+      "frames": 3,
+      "wait_ms": 10000,
+      "interval_ms": 3000
+    },
+    {
       "name": "intro",
       "url": "maps/intro/index.html",
       "frames": 5,
-      "wait_ms": 7000,
+      "wait_ms": 12000,
       "interval_ms": 4000
     },
     {
       "name": "intro_attributes",
       "url": "maps/intro/index.html?view=attributes&theme=dark",
       "frames": 5,
-      "wait_ms": 4000,
+      "wait_ms": 10000,
       "interval_ms": 3000
     },
     {
       "name": "intro_conclusion",
-      "url": "maps/intro/index.html?view=attributes_noplot&theme=dark",
+      "url": "maps/intro/index.html?view=attributes_noplot",
       "frames": 4,
-      "wait_ms": 4000,
+      "wait_ms": 10000,
       "interval_ms": 3000
     },
     {

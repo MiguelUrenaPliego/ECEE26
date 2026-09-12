@@ -48,6 +48,11 @@ const DARK_THEME = ATTRIBUTES_VIEW && URL_PARAMS.get("theme") === "dark";
 const SHOW_CHARTS = !ATTRIBUTES_VIEW || (VIEW_PARAM !== "attributes_noplot" && URL_PARAMS.get("plots") !== "0");
 const CLEAN_VIEW = ATTRIBUTES_VIEW && !SHOW_CHARTS;
 const SHOW_LEGEND = !CLEAN_VIEW;
+// &bare=1: for embedding as a purely decorative background (e.g. behind the
+// title slide) -- on top of clean-view (no legend/charts), also drops the
+// icon-button row, the settings/controls chrome, and the floating dataset
+// name labels, leaving just the map itself.
+const BARE_VIEW = CLEAN_VIEW && URL_PARAMS.get("bare") === "1";
 
 // ---------------------------------------------------------------------------
 // Timing (all ms).
@@ -538,7 +543,9 @@ function renderLayers() {
 
   const layers = [...buildingLayers];
 
-  if (state.labelsVisible) {
+  if (BARE_VIEW) {
+    // no dataset outlines, no dataset labels, no country label -- just buildings.
+  } else if (state.labelsVisible) {
     layers.push(
       ...DATASETS.map(
         (dataset) =>
@@ -989,6 +996,7 @@ function computeHullsAndElevations() {
 
 async function bootstrap() {
   if (CLEAN_VIEW) document.body.classList.add("clean-view");
+  if (BARE_VIEW) document.body.classList.add("bare-view");
   for (const dataset of DATASETS) {
     const collection = await loadDataset(dataset);
     state.datasets[dataset.id] = collection;
@@ -1008,7 +1016,7 @@ async function bootstrap() {
   await prewarmTiles(ATTRIBUTES_VIEW ? attrCameras : [cam2D, cam3D]);
 
   map.jumpTo(ATTRIBUTES_VIEW ? { center: attrCameras[0].center, zoom: attrCameras[0].zoom, pitch: TILT_PITCH, bearing: 0 } : { center: WORLD_CENTER, zoom: WORLD_ZOOM, pitch: 0, bearing: 0 });
-  state.labelsVisible = map.getZoom() >= LABEL_ZOOM_THRESHOLD;
+  state.labelsVisible = !BARE_VIEW && map.getZoom() >= LABEL_ZOOM_THRESHOLD;
 
   hideLoadingOverlay();
   renderLayers();
@@ -1046,13 +1054,15 @@ async function bootstrap() {
     else startShowcase();
   });
 
-  map.on("zoom", () => {
-    const visible = map.getZoom() >= LABEL_ZOOM_THRESHOLD;
-    if (visible !== state.labelsVisible) {
-      state.labelsVisible = visible;
-      renderLayers();
-    }
-  });
+  if (!BARE_VIEW) {
+    map.on("zoom", () => {
+      const visible = map.getZoom() >= LABEL_ZOOM_THRESHOLD;
+      if (visible !== state.labelsVisible) {
+        state.labelsVisible = visible;
+        renderLayers();
+      }
+    });
+  }
 }
 
 map.on("load", () => {

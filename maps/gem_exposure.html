@@ -19,51 +19,51 @@
     background-color: white;
     border: 2px solid #444;
     border-radius: 8px;
-    padding: 16px 20px;
+    padding: 10px 14px;
     box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
 ">
 
-    <div style="display:flex;align-items:center;margin:10px 0;">
-      <div style="width:90px;font-size:20px;font-weight:700;color:#222;">CR</div>
-      <div style="background:#2166ac;height:26px;width:159px;border-radius:3px;"></div>
-      <div style="margin-left:10px;font-size:18px;font-weight:600;color:#222;white-space:nowrap;">
+    <div style="display:flex;align-items:center;margin:5px 0;">
+      <div style="width:56px;font-size:13px;font-weight:700;color:#222;">CR</div>
+      <div style="background:#2166ac;height:15px;width:87px;border-radius:3px;"></div>
+      <div style="margin-left:6px;font-size:12px;font-weight:600;color:#222;white-space:nowrap;">
         362 (34.4%)
       </div>
     </div>
     
-    <div style="display:flex;align-items:center;margin:10px 0;">
-      <div style="width:90px;font-size:20px;font-weight:700;color:#222;">MR</div>
-      <div style="background:#b2182b;height:26px;width:260px;border-radius:3px;"></div>
-      <div style="margin-left:10px;font-size:18px;font-weight:600;color:#222;white-space:nowrap;">
+    <div style="display:flex;align-items:center;margin:5px 0;">
+      <div style="width:56px;font-size:13px;font-weight:700;color:#222;">MR</div>
+      <div style="background:#b2182b;height:15px;width:143px;border-radius:3px;"></div>
+      <div style="margin-left:6px;font-size:12px;font-weight:600;color:#222;white-space:nowrap;">
         589 (55.9%)
       </div>
     </div>
     
-    <div style="display:flex;align-items:center;margin:10px 0;">
-      <div style="width:90px;font-size:20px;font-weight:700;color:#222;">MCF</div>
-      <div style="background:#e66101;height:26px;width:26px;border-radius:3px;"></div>
-      <div style="margin-left:10px;font-size:18px;font-weight:600;color:#222;white-space:nowrap;">
+    <div style="display:flex;align-items:center;margin:5px 0;">
+      <div style="width:56px;font-size:13px;font-weight:700;color:#222;">MCF</div>
+      <div style="background:#e66101;height:15px;width:14px;border-radius:3px;"></div>
+      <div style="margin-left:6px;font-size:12px;font-weight:600;color:#222;white-space:nowrap;">
         59 (5.6%)
       </div>
     </div>
     
-    <div style="display:flex;align-items:center;margin:10px 0;">
-      <div style="width:90px;font-size:20px;font-weight:700;color:#222;">MUR</div>
-      <div style="background:#67a9cf;height:26px;width:13px;border-radius:3px;"></div>
-      <div style="margin-left:10px;font-size:18px;font-weight:600;color:#222;white-space:nowrap;">
+    <div style="display:flex;align-items:center;margin:5px 0;">
+      <div style="width:56px;font-size:13px;font-weight:700;color:#222;">MUR</div>
+      <div style="background:#67a9cf;height:15px;width:7px;border-radius:3px;"></div>
+      <div style="margin-left:6px;font-size:12px;font-weight:600;color:#222;white-space:nowrap;">
         30 (2.8%)
       </div>
     </div>
     
-    <div style="display:flex;align-items:center;margin:10px 0;">
-      <div style="width:90px;font-size:20px;font-weight:700;color:#222;">OT</div>
-      <div style="background:#999999;height:26px;width:5px;border-radius:3px;"></div>
-      <div style="margin-left:10px;font-size:18px;font-weight:600;color:#222;white-space:nowrap;">
+    <div style="display:flex;align-items:center;margin:5px 0;">
+      <div style="width:56px;font-size:13px;font-weight:700;color:#222;">OT</div>
+      <div style="background:#999999;height:15px;width:3px;border-radius:3px;"></div>
+      <div style="margin-left:6px;font-size:12px;font-weight:600;color:#222;white-space:nowrap;">
         13 (1.2%)
       </div>
     </div>
     
-<div style="font-size:9px;color:#888;margin-top:6px;">Based on local building survey data resampled to GEM exposure model resolution. Not direct GEM exposure model data.</div>
+<div style="font-size:8px;color:#888;margin-top:4px;max-width:220px;">Based on local building survey data resampled to GEM exposure model resolution. Not direct GEM exposure model data.</div>
 </div>
 
 <script>
@@ -73,10 +73,12 @@ const map = new maplibregl.Map({
   container: 'map',
   style: 'https://tiles.openfreemap.org/styles/liberty',
   center: [-69.93679599570463, 18.465754269285625],
-  zoom: 14
+  zoom: 14,
+  attributionControl: false
 });
 
 map.addControl(new maplibregl.NavigationControl());
+map.addControl(new maplibregl.AttributionControl({ compact: true }));
 
 map.on('load', () => {
   map.addSource('grid', { type: 'geojson', data: gridData });

@@ -66,7 +66,7 @@ body,
    at least its title and legend, optionally more. */
 #controls {
   position: absolute;
-  top: 16px;
+  top: 78px;
   left: 16px;
   z-index: 10;
   width: 380px;

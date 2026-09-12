@@ -3,14 +3,32 @@
    template actually uses; keep the token names the same so any panel copied
    in later from the visor drops in without a rename. */
 :root {
-  color-scheme: dark;
+  color-scheme: light;
   font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-  /* Bumped up from the visor's own 1x baseline: this template is meant to be
-     read from across a room on a projector, not hovered over on a laptop.
-     Every panel/legend/table font-size below is in rem, so this one value
-     scales the whole UI — tune it here rather than per-rule. */
   font-size: 20px;
 
+  --bg: #eef1f3;
+  --panel: rgba(255, 255, 255, 0.72);
+  --panel-solid: #ffffff;
+  --border: rgba(20, 24, 28, 0.12);
+  --border-strong: rgba(20, 24, 28, 0.22);
+  --glass-border: rgba(20, 24, 28, 0.1);
+  --glass-highlight: rgba(255, 255, 255, 0.6);
+  --text: #14181d;
+  --muted: #4b5459;
+  --faint: #6b7479;
+
+  --amber: #e2a33f;
+  --amber-soft: rgba(226, 163, 63, 0.14);
+  --amber-ink: #f0be6f;
+  --amber-ink-dark: #2a1c04;
+  --focus: #6db4ff;
+}
+
+/* ?theme=dark -- everything above is themed off these CSS vars, so
+   redefining them here is enough to reskin every panel/button. */
+body.theme-dark {
+  color-scheme: dark;
   --bg: #0a0c0f;
   --panel: rgba(22, 27, 33, 0.48);
   --panel-solid: #14181d;
@@ -21,13 +39,21 @@
   --text: #edf1f3;
   --muted: #9aa5ac;
   --faint: #7c868d;
-
   --amber: #e2a33f;
-  --amber-soft: rgba(226, 163, 63, 0.14);
-  --amber-ink: #f0be6f;
-  --amber-ink-dark: #2a1c04;
-  --focus: #6db4ff;
 }
+
+body.theme-dark .maplibregl-ctrl-attrib {
+  background: rgba(20, 24, 28, 0.6) !important;
+}
+
+body.theme-dark .maplibregl-ctrl-attrib a {
+  color: #edf1f3 !important;
+}
+
+body.theme-dark .legend-swatch {
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
 
 * {
   box-sizing: border-box;
@@ -63,7 +89,7 @@ body,
    legend must stay visible at all times, video mode included. */
 #controls {
   position: absolute;
-  top: 16px;
+  top: 78px;
   left: 16px;
   z-index: 10;
   width: 380px;
