@@ -36,6 +36,12 @@ NAME_RE = re.compile(r'\bmap-slot--([\w-]+)\b')
 FALLBACK_SCRIPT = """
 <script data-injected-by="inject_maps.py">
 (function () {
+  // A Marp deck is one long scrolling page: if every map's iframe loaded
+  // eagerly, all of them would run their WebGL context (MapLibre + deck.gl)
+  // at once. Browsers cap total WebGL contexts per page (commonly ~16), so
+  // with this many maps the oldest ones get silently evicted and basemap/
+  // deck.gl layers stop rendering. Loading (and unloading) each iframe's
+  // src based on scroll proximity keeps only the nearby maps live.
   function fallback(iframe, name) {
     if (iframe.dataset.fellBack) return;
     iframe.dataset.fellBack = '1';
@@ -48,15 +54,38 @@ FALLBACK_SCRIPT = """
     iframe.replaceWith(img);
   }
 
-  document.querySelectorAll('iframe[data-map-name]').forEach(function (iframe) {
-    var name = iframe.getAttribute('data-map-name');
+  function load(iframe, name) {
+    if (iframe.dataset.fellBack) return;
+    var src = iframe.dataset.mapSrc;
     if (location.protocol === 'file:') { fallback(iframe, name); return; }
-    fetch(iframe.getAttribute('src'), { method: 'HEAD' })
+    iframe.src = src;
+    fetch(src, { method: 'HEAD' })
       .then(function (r) { if (!r.ok) fallback(iframe, name); })
       .catch(function () { fallback(iframe, name); });
     var loaded = false;
-    iframe.addEventListener('load', function () { loaded = true; });
+    iframe.addEventListener('load', function () { loaded = true; }, { once: true });
     setTimeout(function () { if (!loaded) fallback(iframe, name); }, 6000);
+  }
+
+  function unload(iframe) {
+    if (iframe.dataset.fellBack) return;
+    iframe.removeAttribute('src');
+  }
+
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      var iframe = entry.target;
+      var name = iframe.getAttribute('data-map-name');
+      if (entry.isIntersecting) {
+        if (!iframe.getAttribute('src')) load(iframe, name);
+      } else {
+        unload(iframe);
+      }
+    });
+  }, { rootMargin: '1000px 0px' });
+
+  document.querySelectorAll('iframe[data-map-name]').forEach(function (iframe) {
+    observer.observe(iframe);
   });
 })();
 </script>
@@ -93,7 +122,7 @@ def main():
             c for c in classes.split() if c not in ("map-slot", f"map-slot--{name}")
         )
         class_attr = f' class="{rest_classes}"' if rest_classes else ""
-        return f'<iframe src="./{url}" data-map-name="{name}"{class_attr}></iframe>'
+        return f'<iframe data-map-src="./{url}" data-map-name="{name}"{class_attr}></iframe>'
 
     new_html, n = SLOT_RE.subn(repl, html)
     print(f"Replaced {n} map-slot placeholder(s) with real <iframe>s")

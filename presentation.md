@@ -3,7 +3,7 @@ marp: true
 theme: ecee2026
 paginate: true
 html: true
-footer: '<img class="logo-ecee" src="./assets/ecee2026_logo.png" alt="ECEE2026 logo" /><img class="skyline" src="./assets/skyline_footer.png" alt="" /><img class="logo-rptu" src="./assets/rptu_logo.png" alt="RPTU logo" /><img class="logo-tuberlin" src="./assets/tuberlin_logo.png" alt="TU Berlin logo" /><span class="footer-caption">ML structural system classification<br>Ureña-Pliego et al.<br><a href="https://miguelurenapliego.github.io/ECEE26/">miguelurenapliego.github.io/ECEE26</a></span>'
+footer: '<img class="logo-ecee" src="./assets/ecee2026_logo.png" alt="ECEE2026 logo" /><img class="skyline" src="./assets/skyline_footer.png" alt="" /><img class="logo-rptu" src="./assets/rptu_logo.png" alt="RPTU logo" /><img class="logo-tuberlin" src="./assets/tuberlin_logo.png" alt="TU Berlin logo" /><span class="footer-caption">ML structural system classification &mdash; Ureña-Pliego et al.<br><a href="https://miguelurenapliego.github.io/ECEE26/">miguelurenapliego.github.io/ECEE26</a></span>'
 ---
 
 <!-- _class: title -->
@@ -31,7 +31,7 @@ Miguel Ureña-Pliego<sup>1,*</sup>, Javier Rodríguez-Saiz<sup>1,2</sup>, Javier
 <sup>5</sup> ENSAM Institute of Technology, Paris, France
 <sup>6</sup> Departamento de Ingeniería y Gestión Forestal, ETSIMFYMN, Universidad Politécnica de Madrid, Spain
 <sup>7</sup> Centro de I+D+i en Infraestructuras Inteligentes y Sostenibles (CIVILis), ETSICCP, Universidad Politécnica de Madrid, Spain
-<br>* Corresponding author: Miguel Ureña-Pliego — <a href="mailto:miguel.urena@upm.es">miguel.urena@upm.es</a> &nbsp;<a href="https://www.linkedin.com/in/miguel-urena-pliego/" class="contact-icon-link"><img src="./assets/icon_linkedin.png" class="contact-icon"> linkedin.com/in/miguel-urena-pliego</a> &nbsp;<a href="https://github.com/MiguelUrenaPliego" class="contact-icon-link"><img src="./assets/icon_github.png" class="contact-icon"> github.com/MiguelUrenaPliego</a>
+<br>* Corresponding author: Miguel Ureña-Pliego — <a href="mailto:miguel.urena@upm.es">miguel.urena@upm.es</a><br><a href="https://www.linkedin.com/in/miguel-urena-pliego/" class="contact-icon-link"><img src="./assets/icon_linkedin.png" class="contact-icon"> linkedin.com/in/miguel-urena-pliego</a> &nbsp;<a href="https://github.com/MiguelUrenaPliego" class="contact-icon-link"><img src="./assets/icon_github.png" class="contact-icon"> github.com/MiguelUrenaPliego</a>
 
 </div>
 
@@ -351,7 +351,7 @@ Miguel Ureña-Pliego<sup>1,*</sup>, Javier Rodríguez-Saiz<sup>1,2</sup>, Javier
 <sup>5</sup> ENSAM Institute of Technology, Paris, France
 <sup>6</sup> Departamento de Ingeniería y Gestión Forestal, ETSIMFYMN, Universidad Politécnica de Madrid, Spain
 <sup>7</sup> Centro de I+D+i en Infraestructuras Inteligentes y Sostenibles (CIVILis), ETSICCP, Universidad Politécnica de Madrid, Spain
-<br>* Corresponding author: Miguel Ureña-Pliego — <a href="mailto:miguel.urena@upm.es">miguel.urena@upm.es</a> &nbsp;<a href="https://www.linkedin.com/in/miguel-urena-pliego/" class="contact-icon-link"><img src="./assets/icon_linkedin.png" class="contact-icon"> linkedin.com/in/miguel-urena-pliego</a> &nbsp;<a href="https://github.com/MiguelUrenaPliego" class="contact-icon-link"><img src="./assets/icon_github.png" class="contact-icon"> github.com/MiguelUrenaPliego</a>
+<br>* Corresponding author: Miguel Ureña-Pliego — <a href="mailto:miguel.urena@upm.es">miguel.urena@upm.es</a><br><a href="https://www.linkedin.com/in/miguel-urena-pliego/" class="contact-icon-link"><img src="./assets/icon_linkedin.png" class="contact-icon"> linkedin.com/in/miguel-urena-pliego</a> &nbsp;<a href="https://github.com/MiguelUrenaPliego" class="contact-icon-link"><img src="./assets/icon_github.png" class="contact-icon"> github.com/MiguelUrenaPliego</a>
 
 </div>
 
