@@ -1,0 +1,96 @@
+{
+  "_comment": "Single source of truth for every embedded map: the marker name matches the <!-- MAP:name --> comment right before its <iframe> in presentation.md. Used by scripts/capture_map_gifs.py (to render figures/maps_gif/<name>.gif/.jpg) and scripts/build_presentation_variants.py (to swap iframes for those images in the static/gif PDF variants).",
+  "maps": [
+    {
+      "name": "gem_exposure",
+      "url": "maps/gem_exposure.html",
+      "frames": 4,
+      "wait_ms": 2500,
+      "interval_ms": 4000
+    },
+    {
+      "name": "intro",
+      "url": "maps/intro/index.html",
+      "frames": 5,
+      "wait_ms": 7000,
+      "interval_ms": 4000
+    },
+    {
+      "name": "intro_attributes",
+      "url": "maps/intro/index.html?view=attributes&theme=dark",
+      "frames": 5,
+      "wait_ms": 4000,
+      "interval_ms": 3000
+    },
+    {
+      "name": "intro_conclusion",
+      "url": "maps/intro/index.html?view=attributes_noplot&theme=dark",
+      "frames": 4,
+      "wait_ms": 4000,
+      "interval_ms": 3000
+    },
+    {
+      "name": "height",
+      "url": "maps/height/index.html",
+      "frames": 4,
+      "wait_ms": 3000,
+      "interval_ms": 10000
+    },
+    {
+      "name": "relative_position",
+      "url": "maps/relative_position/index.html",
+      "frames": 4,
+      "wait_ms": 3000,
+      "interval_ms": 10000
+    },
+    {
+      "name": "shape_parameters",
+      "url": "maps/shape_parameters/index.html",
+      "frames": 5,
+      "wait_ms": 3000,
+      "interval_ms": 10000
+    },
+    {
+      "name": "roof_material",
+      "url": "maps/roof_material/index.html",
+      "frames": 4,
+      "wait_ms": 3000,
+      "interval_ms": 10000
+    },
+    {
+      "name": "year",
+      "url": "maps/year/index.html",
+      "frames": 4,
+      "wait_ms": 3000,
+      "interval_ms": 10000
+    },
+    {
+      "name": "structural_system_split",
+      "url": "maps/structural_system/index.html?view=split",
+      "frames": 3,
+      "wait_ms": 3500,
+      "interval_ms": 10000
+    },
+    {
+      "name": "structural_system_metrics",
+      "url": "maps/structural_system/index.html?view=metrics",
+      "frames": 5,
+      "wait_ms": 3500,
+      "interval_ms": 10000
+    },
+    {
+      "name": "structural_system_feature_importance",
+      "url": "maps/structural_system/index.html?view=feature_importance",
+      "frames": 5,
+      "wait_ms": 3500,
+      "interval_ms": 10000
+    },
+    {
+      "name": "structural_system_comparison",
+      "url": "maps/structural_system/index.html?view=comparison",
+      "frames": 4,
+      "wait_ms": 3500,
+      "interval_ms": 10000
+    }
+  ]
+}

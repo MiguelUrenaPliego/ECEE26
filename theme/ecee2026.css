@@ -1,0 +1,439 @@
+/* @theme ecee2026 */
+/* ECEE 2026 (18th European Conference on Earthquake Engineering) oral-presentation theme.
+   Every position below is derived directly from the official
+   ECEE2026_Oral_Presentation_Template.pptx (EMU coordinates converted to px
+   on a 1280x720 canvas = the pptx's 12192000x6858000 EMU slide, 16:9). */
+
+@import 'default';
+
+:root {
+  --ecee-yellow: #d7da1e;
+  --ecee-red: #c50e1f;
+  --ecee-text: #000000;
+  --ecee-gray: #808080;
+}
+
+section {
+  width: 1280px;
+  height: 720px;
+  background: #ffffff;
+  color: var(--ecee-text);
+  font-family: Arial, Helvetica, "Liberation Sans", sans-serif;
+  font-size: 26px;
+  position: relative;
+  /* content box: pptx x=838200/y=1825625 ext=10515600x4351338 EMU */
+  padding: 100px 88px 108px 88px;
+  justify-content: flex-start;
+}
+
+section > :first-child {
+  margin-top: 0;
+}
+
+/* pptx title placeholder: off 838200,365125 ext 10515600x1325563 */
+h1 {
+  position: absolute;
+  left: 88px;
+  top: 38px;
+  width: 1104px;
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--ecee-text);
+  margin: 0;
+  line-height: 1.15;
+}
+
+h2 {
+  font-size: 34px;
+  font-weight: 700;
+}
+
+ul, ol {
+  font-size: 26px;
+  line-height: 1.5;
+  margin-top: 8px;
+}
+
+ul > li, ol > li {
+  margin-bottom: 18px;
+}
+
+ul > li::marker {
+  color: var(--ecee-text);
+}
+
+a {
+  color: #0563c1;
+}
+
+strong {
+  font-weight: 700;
+}
+
+/* ============================================================
+   FIGURE SLIDE — a title plus one centered figure filling the content box.
+   Mark a slide with the `figure` class and put a single <img> after the h1.
+   ============================================================ */
+
+section.figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+section.figure img {
+  max-width: 100%;
+  max-height: 470px;
+  object-fit: contain;
+}
+
+section.figure p {
+  margin: 0;
+  text-align: center;
+}
+
+.figure-caption {
+  margin-top: 12px;
+  font-size: 16px;
+  color: var(--ecee-gray);
+  text-align: center;
+}
+
+/* ============================================================
+   REFERENCES SLIDE — APA-style, alphabetical, hanging-indent entries
+   matching the (Author, Year) slide-ref markers, set in two columns so
+   it comfortably fits a full bibliography. Mark the slide with `refs`.
+   ============================================================ */
+
+section.refs .apa-refs {
+  columns: 2;
+  column-gap: 48px;
+  margin-top: 16px;
+}
+
+section.refs .apa-ref {
+  font-size: 15px;
+  line-height: 1.5;
+  margin: 0 0 14px 0;
+  padding-left: 24px;
+  text-indent: -24px;
+  break-inside: avoid;
+}
+
+/* ============================================================
+   FOOTER — compact version on content slides (the title slide overrides
+   this below to the full template-scale band, since it has much more
+   vertical room to spare). pptx master "Grafik 7" (ECEE logo), "Grafik 8"/
+   "Grafik 9" (RPTU / TU Berlin), "Fußzeilenplatzhalter 23" (caption) and
+   the page-number placeholder — all scaled down, same relative layout.
+   ============================================================ */
+
+footer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+footer img.logo-ecee {
+  position: absolute;
+  left: 14px;
+  top: 646px;
+  width: 212px;
+  height: auto;
+  z-index: 1;
+}
+
+/* Picture 4 (skyline/waveform + Berlin buildings) is title-slide only —
+   content slides get a plain rule instead. */
+footer img.skyline {
+  display: none;
+}
+
+footer::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 640px;
+  height: 2px;
+  background: var(--ecee-yellow);
+  z-index: 0;
+}
+
+footer img.logo-rptu {
+  position: absolute;
+  right: 108px;
+  top: 656px;
+  width: 84px;
+  height: 31px;
+  z-index: 1;
+}
+
+footer img.logo-tuberlin {
+  position: absolute;
+  right: 14px;
+  top: 663px;
+  width: 72px;
+  height: 25px;
+  z-index: 1;
+}
+
+footer .footer-caption {
+  position: absolute;
+  left: 236px;
+  top: 645px;
+  right: 204px;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.25;
+  color: var(--ecee-gray);
+  font-family: Arial, Helvetica, sans-serif;
+  z-index: 1;
+}
+
+footer .footer-caption a {
+  color: #6b7280;
+}
+
+/* Marp page number: shows "current | total" (the attr(data-marpit-pagination)
+   prefix is required for Marpit to keep this content declaration). The
+   bottom-right corner is taken up by the RPTU / TU Berlin logos, so this
+   sits in the (always empty) top-right corner instead — clear of both the
+   logos and the body content. */
+section::after {
+  content: attr(data-marpit-pagination) ' | ' attr(data-marpit-pagination-total);
+  top: 24px;
+  right: 40px;
+  bottom: auto;
+  font-size: 22px;
+  color: var(--ecee-text);
+  font-family: Arial, Helvetica, sans-serif;
+  z-index: 1;
+}
+
+/* ============================================================
+   TITLE SLIDE (mark a slide with the `title` class)
+   pptx title-slide shapes: Titel 1 off 1524000,1439433 ext 9144000x968985;
+   Untertitel 2 off 1524000,3283009 ext 9144000x1655762.
+   Plus a non-template addition: a funding-logo header row (explicitly
+   requested), which pushes the title block down from its pptx position to
+   make room.
+   ============================================================ */
+
+section.title {
+  padding: 0;
+}
+
+/* Optional: a faded live map behind the title/closing slide content.
+   Add <iframe class="bg-map-frame" src="./maps/intro/index.html?view=attributes_noplot"></iframe>
+   as the FIRST element inside a `title`-class slide to turn this on;
+   delete that one line to turn it back off. */
+.bg-map-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  opacity: 0.5;
+  z-index: 0;
+  pointer-events: none;
+}
+
+section.title h1 {
+  left: 160px;
+  top: 148px;
+  width: 960px;
+  text-align: center;
+  font-size: 32px;
+  line-height: 1.25;
+}
+
+section.title .authors {
+  position: absolute;
+  left: 160px;
+  top: 300px;
+  width: 960px;
+  text-align: center;
+  font-size: 21px;
+  line-height: 1.5;
+}
+
+section.title .affiliations {
+  position: absolute;
+  left: 160px;
+  top: 400px;
+  width: 960px;
+  text-align: center;
+  font-size: 13px;
+  font-style: italic;
+  line-height: 1.45;
+  color: #1a1a1a;
+}
+
+section.title .affiliations a {
+  color: #0563c1;
+}
+
+/* -- header row: funding logos (left) + RISK CARIBERIA (right), flush to
+      the top corners, no blank margin. Title-slide only, per request. -- */
+section.title header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 96px;
+}
+
+section.title header img.logos-top-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: auto;
+}
+
+section.title header img.logo-riskcar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: auto;
+}
+
+/* Title slide only: full template-scale footer band, with the Berlin
+   skyline/waveform illustration (which carries its own yellow rule)
+   instead of the plain content-slide line. */
+section.title footer img.logo-ecee {
+  left: 22px;
+  top: 634px;
+  width: 410px;
+  height: 78px;
+}
+
+section.title footer img.skyline {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 482px;
+  width: 100%;
+  height: 218px;
+  z-index: 0;
+}
+
+section.title footer::before {
+  display: none;
+}
+
+section.title footer img.logo-rptu {
+  right: auto;
+  left: 898px;
+  top: 646px;
+  width: 139px;
+  height: 58px;
+}
+
+section.title footer img.logo-tuberlin {
+  right: auto;
+  left: 1148px;
+  top: 659px;
+  width: 120px;
+  height: 41px;
+}
+
+section.title footer .footer-caption {
+  left: 438px;
+  right: auto;
+  top: 636px;
+  width: 452px;
+  font-size: 18px;
+  line-height: 1.3;
+}
+
+/* ============================================================
+   PER-SLIDE REFERENCE — bottom-right, just above the yellow line.
+   Add `<span class="slide-ref">[n]</span>` to a slide to cite the source
+   backing it; collect the numbered list on a closing "References" slide.
+   ============================================================ */
+
+.slide-ref {
+  position: absolute;
+  right: 40px;
+  bottom: calc(720px - 640px + 6px);
+  font-size: 12px;
+  color: var(--ecee-gray);
+  font-family: Arial, Helvetica, sans-serif;
+  z-index: 1;
+}
+
+section.title .slide-ref {
+  bottom: calc(720px - 629px + 6px);
+  font-size: 13px;
+}
+
+/* ============================================================
+   MAP SLIDES — the map fills the entire slide edge-to-edge with no
+   margin; a title (if the slide has one) and the footer float on top of
+   it as translucent bars so both stay legible over busy map imagery.
+   Mark a slide with the `map` class.
+   ============================================================ */
+
+section.map {
+  padding: 0;
+}
+
+section.map > img,
+section.map > iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  object-fit: cover;
+}
+
+section.map header {
+  display: none;
+}
+
+/* Title bar — only rendered when the slide actually has an <h1>. */
+section.map h1 {
+  display: block;
+  position: absolute;
+  inset: 0 0 auto 0;
+  width: auto;
+  margin: 0;
+  padding: 20px 40px;
+  font-size: 28px;
+  line-height: 1.2;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.88) 0%, rgba(255, 255, 255, 0.88) 75%, rgba(255, 255, 255, 0) 100%);
+  z-index: 2;
+}
+
+/* Footer bar — a translucent band behind the (full-opacity, fully legible)
+   logos/caption/page-number, instead of fading those elements themselves. */
+section.map footer::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 92px;
+  background: linear-gradient(to top, rgba(255, 255, 255, 0.88) 0%, rgba(255, 255, 255, 0.88) 70%, rgba(255, 255, 255, 0) 100%);
+  z-index: 0;
+}
+
+section.map footer img.logo-ecee {
+  width: 190px;
+  height: auto;
+}
+
+section.map footer .footer-caption {
+  font-size: 12px;
+}
+
+section.map::after {
+  background: rgba(255, 255, 255, 0.88);
+  padding: 2px 6px;
+  border-radius: 4px;
+}

@@ -1,0 +1,418 @@
+/* Same control language as every other map (glass panels, icon-button row,
+   legend list) -- just re-themed light since this is the one map that uses
+   the "normal" (non-dark) basemap. */
+:root {
+  color-scheme: light;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 20px;
+
+  --bg: #eef1f3;
+  --panel: rgba(255, 255, 255, 0.72);
+  --panel-solid: #ffffff;
+  --border: rgba(20, 24, 28, 0.12);
+  --border-strong: rgba(20, 24, 28, 0.22);
+  --glass-border: rgba(20, 24, 28, 0.1);
+  --glass-highlight: rgba(255, 255, 255, 0.6);
+  --text: #14181d;
+  --muted: #4b5459;
+  --faint: #6b7479;
+
+  --amber: #e2a33f;
+  --amber-ink-dark: #2a1c04;
+}
+
+/* ?view=attributes&theme=dark -- everything below is themed off these CSS
+   vars, so redefining them here is enough to reskin every panel/button. */
+body.theme-dark {
+  color-scheme: dark;
+  --bg: #0a0c0f;
+  --panel: rgba(22, 27, 33, 0.48);
+  --panel-solid: #14181d;
+  --border: rgba(255, 255, 255, 0.09);
+  --border-strong: rgba(255, 255, 255, 0.18);
+  --glass-border: rgba(255, 255, 255, 0.16);
+  --glass-highlight: rgba(255, 255, 255, 0.07);
+  --text: #edf1f3;
+  --muted: #9aa5ac;
+  --faint: #7c868d;
+}
+
+body.theme-dark .maplibregl-ctrl-attrib {
+  background: rgba(20, 24, 28, 0.6) !important;
+}
+
+body.theme-dark .maplibregl-ctrl-attrib a {
+  color: #edf1f3 !important;
+}
+
+body.theme-dark .legend-swatch {
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+body.theme-dark .building-summary tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  background: var(--bg);
+  color: var(--text);
+}
+
+#map {
+  position: absolute;
+  inset: 0;
+}
+
+.hidden {
+  display: none !important;
+}
+
+#loading-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 50;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.4s ease;
+}
+
+#loading-overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#loading-overlay p {
+  color: var(--muted);
+  font-size: 1.1rem;
+}
+
+.glass-panel {
+  background: linear-gradient(150deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 45%), var(--panel);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 18px 44px rgba(20, 24, 28, 0.14), inset 0 1px 0 var(--glass-highlight);
+}
+
+/* ---------- controls panel ---------- */
+#controls {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 10;
+  width: 380px;
+  max-height: calc(100vh - 32px);
+  overflow-y: auto;
+  border-radius: 14px;
+  padding: 22px;
+}
+
+#controls-fields.hidden {
+  display: none;
+}
+
+#controls-toggle {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  border: none;
+  background: transparent;
+  color: var(--faint);
+  border-radius: 8px;
+  width: 34px;
+  height: 34px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+
+#controls-toggle:hover {
+  color: var(--text);
+  background: rgba(20, 24, 28, 0.06);
+}
+
+#controls-toggle.collapsed {
+  transform: rotate(180deg);
+}
+
+#controls h1 {
+  font-size: 1.6rem;
+  margin: 0 0 4px;
+  color: var(--text);
+}
+
+.subtitle {
+  margin: 0 0 4px;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+.hint {
+  margin: 18px 0 0;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: var(--faint);
+}
+
+/* ---------- icon buttons, top-right row ---------- */
+.icon-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 16px;
+  z-index: 11;
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  border: 1px solid var(--glass-border);
+  background: var(--panel-solid);
+  color: var(--text);
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(20, 24, 28, 0.1);
+}
+
+.icon-button svg {
+  width: 26px;
+  height: 26px;
+}
+
+.icon-button:hover {
+  background: rgba(20, 24, 28, 0.04);
+}
+
+.icon-button.active {
+  background: var(--amber);
+  color: var(--amber-ink-dark);
+  border-color: transparent;
+}
+
+#reorient-toggle {
+  right: 280px;
+}
+
+#resume-showcase-toggle {
+  right: 214px;
+}
+
+#view-3d-toggle {
+  right: 148px;
+}
+
+#charts-toggle {
+  right: 82px;
+}
+
+#settings-toggle {
+  right: 16px;
+}
+
+#settings-panel {
+  position: absolute;
+  top: 78px;
+  right: 16px;
+  z-index: 12;
+  width: 380px;
+  max-height: calc(100vh - 94px);
+  overflow-y: auto;
+  border-radius: 14px;
+  padding: 22px;
+}
+
+#settings-panel h2 {
+  font-size: 1.4rem;
+  margin: 0 0 12px;
+}
+
+/* ---------- comparison charts -- same top-right placement and chart-card
+   styling every other map uses (see e.g. structural_system/style.css), just
+   re-themed light. ---------- */
+#charts-panel {
+  position: absolute;
+  top: 78px;
+  right: 16px;
+  z-index: 10;
+  width: 460px;
+  max-height: calc(100vh - 94px);
+  overflow-y: auto;
+  border-radius: 14px;
+  padding: 22px;
+}
+
+.chart-card {
+  background: var(--panel-solid);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px;
+}
+
+.chart-card + .chart-card {
+  margin-top: 16px;
+}
+
+.chart-card h3 {
+  margin: 0 0 14px;
+  font-size: 1.15rem;
+  color: var(--text);
+}
+
+.chart-card svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.chart-card svg text {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+/* Bare presentation view (?view=attributes_noplot): no legend/chart chrome
+   at all, just the map and the standard icon-button row. */
+body.clean-view #controls,
+body.clean-view #charts-panel {
+  display: none;
+}
+
+.panel-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 4px;
+}
+
+.panel-actions button {
+  border: none;
+  background: transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 6px 10px;
+  line-height: 1;
+  font-size: 1.8rem;
+  color: var(--faint);
+}
+
+.panel-actions button:hover {
+  color: var(--text);
+  background: rgba(20, 24, 28, 0.06);
+}
+
+/* ---------- legend ---------- */
+#legend {
+  margin-top: 16px;
+}
+
+/* Empty until 3D activates (see renderLegend) -- collapse the gap instead
+   of showing a blank strip in the panel. */
+#legend:empty {
+  margin-top: 0;
+}
+
+#legend h2 {
+  font-size: 1.15rem;
+  margin: 0 0 10px;
+  color: var(--text);
+}
+
+.legend-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.legend-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.05rem;
+  color: var(--text);
+}
+
+.legend-swatch {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  border: 1px solid rgba(20, 24, 28, 0.15);
+  flex-shrink: 0;
+}
+
+/* ---------- building popup ---------- */
+#building-panel {
+  position: absolute;
+  left: 16px;
+  right: 492px;
+  bottom: 16px;
+  max-height: 46vh;
+  z-index: 13;
+  overflow-y: auto;
+  border-radius: 14px;
+  padding: 14px 18px;
+}
+
+#building-panel-content h2 {
+  font-size: 1.4rem;
+  margin: 0 0 6px;
+  color: var(--text);
+}
+
+#building-panel-content .building-subtitle {
+  margin: 0 0 18px;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.building-summary {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1rem;
+}
+
+.building-summary th {
+  text-align: left;
+  color: var(--muted);
+  font-weight: 500;
+  padding: 6px 12px 6px 0;
+  vertical-align: top;
+  white-space: nowrap;
+}
+
+.building-summary td {
+  text-align: left;
+  padding: 6px 0;
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+
+.building-summary tr:nth-child(even) {
+  background: rgba(20, 24, 28, 0.03);
+}
+
+.error {
+  color: #b91c1c;
+  font-size: 1rem;
+  margin-top: 16px;
+}
+
+.maplibregl-ctrl-attrib {
+  background: rgba(255, 255, 255, 0.6) !important;
+}
+
+.maplibregl-ctrl-attrib a {
+  color: #14181d !important;
+}

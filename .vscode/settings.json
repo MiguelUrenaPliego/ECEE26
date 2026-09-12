@@ -1,0 +1,6 @@
+{
+  "markdown.marp.themes": [
+    "./theme/ecee2026.css"
+  ],
+  "markdown.marp.html": "all"
+}
