@@ -31,7 +31,7 @@ Miguel Ureña-Pliego<sup>1,*</sup>, Javier Rodríguez-Saiz<sup>1,2</sup>, Javier
 <sup>5</sup> ENSAM Institute of Technology, Paris, France
 <sup>6</sup> Departamento de Ingeniería y Gestión Forestal, ETSIMFYMN, Universidad Politécnica de Madrid, Spain
 <sup>7</sup> Centro de I+D+i en Infraestructuras Inteligentes y Sostenibles (CIVILis), ETSICCP, Universidad Politécnica de Madrid, Spain
-<br>* Corresponding author: Miguel Ureña-Pliego — <a href="mailto:miguel.urena@upm.es">miguel.urena@upm.es</a> &nbsp;<a href="https://www.linkedin.com/in/miguel-urena-pliego/" class="contact-icon-link"><img src="./assets/icon_linkedin.png" class="contact-icon"> LinkedIn</a> &nbsp;<a href="https://github.com/MiguelUrenaPliego" class="contact-icon-link"><img src="./assets/icon_github.png" class="contact-icon"> GitHub</a>
+<br>* Corresponding author: Miguel Ureña-Pliego — <a href="mailto:miguel.urena@upm.es">miguel.urena@upm.es</a> &nbsp;<a href="https://www.linkedin.com/in/miguel-urena-pliego/" class="contact-icon-link"><img src="./assets/icon_linkedin.png" class="contact-icon"> linkedin.com/in/miguel-urena-pliego</a> &nbsp;<a href="https://github.com/MiguelUrenaPliego" class="contact-icon-link"><img src="./assets/icon_github.png" class="contact-icon"> github.com/MiguelUrenaPliego</a>
 
 </div>
 
@@ -170,7 +170,9 @@ Miguel Ureña-Pliego<sup>1,*</sup>, Javier Rodríguez-Saiz<sup>1,2</sup>, Javier
 
 </div>
 
-<!-- Note: these AJ/SBD/PQ/mAP/sAP metric values are from the TFM deck's Guatemala benchmark (the only numbers available for this segmentation comparison); the four images above are the Santo Domingo equivalents. No slide-ref here: this segmentation benchmark isn't in the ECEE paper's reference list — it's the authors' own (unpublished) TFM comparison. -->
+<!-- Note: these AJ/SBD/PQ/mAP/sAP metric values are from the TFM deck's Guatemala benchmark (the only numbers available for this segmentation comparison); the four images above are the Santo Domingo equivalents. That benchmark itself isn't in the ECEE paper's reference list -- the authors' own (unpublished) TFM comparison -- but the footprint-derived attributes it feeds into are, hence the citation below. -->
+
+<span class="slide-ref">Ureña-Pliego et al., 2026</span>
 
 ---
 
@@ -309,7 +311,7 @@ Miguel Ureña-Pliego<sup>1,*</sup>, Javier Rodríguez-Saiz<sup>1,2</sup>, Javier
 <p class="apa-ref">Bishop, C. M. (2006). <em>Pattern recognition and machine learning</em>. Springer.</p>
 <p class="apa-ref">Brzev, S., Scawthorn, C., Silva, V., et al. (2013). <em>GEM building taxonomy version 2.0</em>. https://doi.org/10.13117/GEM.EXP-MOD.TR2013.02</p>
 <p class="apa-ref">GEM Foundation. (n.d.). <em>Dominican Republic exposure model</em> [Data set]. OpenQuake Global Risk Model. https://docs.openquake.org/global_risk_model/exposure/Caribbean_Central_America/Dominican_Republic/README.html</p>
-<p class="apa-ref">GeomaticsCaminosUPM. (n.d.). <em>SeismicBuildingExposure</em> [Computer software]. GitHub. https://github.com/GeomaticsCaminosUPM/SeismicBuildingExposure</p>
+<p class="apa-ref">GeomaticsCaminosUPM. (n.d.). <em>footprint_attributes</em> [Computer software]. GitHub. https://github.com/GeomaticsCaminosUPM/footprint_attributes</p>
 <p class="apa-ref">Hollmann, N., Müller, S., et al. (2022). <em>TabPFN: A transformer that solves small tabular classification problems in a second</em>. https://doi.org/10.48550/arXiv.2207.01848</p>
 <p class="apa-ref">Hollmann, N., Müller, S., et al. (2025). Accurate predictions on small data with a tabular foundation model. <em>Nature</em>. https://doi.org/10.1038/s41586-024-08328-6</p>
 <p class="apa-ref">Jiménez-Martínez, M., Navas-Sánchez, L., et al. (2024). A methodology to assess and select seismic fragility curves: Calibration from expert survey and fuzzy analysis. <em>International Journal of Disaster Risk Reduction</em>. https://doi.org/10.1016/j.ijdrr.2024.104930</p>
@@ -349,7 +351,7 @@ Miguel Ureña-Pliego<sup>1,*</sup>, Javier Rodríguez-Saiz<sup>1,2</sup>, Javier
 <sup>5</sup> ENSAM Institute of Technology, Paris, France
 <sup>6</sup> Departamento de Ingeniería y Gestión Forestal, ETSIMFYMN, Universidad Politécnica de Madrid, Spain
 <sup>7</sup> Centro de I+D+i en Infraestructuras Inteligentes y Sostenibles (CIVILis), ETSICCP, Universidad Politécnica de Madrid, Spain
-<br>* Corresponding author: Miguel Ureña-Pliego — <a href="mailto:miguel.urena@upm.es">miguel.urena@upm.es</a> &nbsp;<a href="https://www.linkedin.com/in/miguel-urena-pliego/" class="contact-icon-link"><img src="./assets/icon_linkedin.png" class="contact-icon"> LinkedIn</a> &nbsp;<a href="https://github.com/MiguelUrenaPliego" class="contact-icon-link"><img src="./assets/icon_github.png" class="contact-icon"> GitHub</a>
+<br>* Corresponding author: Miguel Ureña-Pliego — <a href="mailto:miguel.urena@upm.es">miguel.urena@upm.es</a> &nbsp;<a href="https://www.linkedin.com/in/miguel-urena-pliego/" class="contact-icon-link"><img src="./assets/icon_linkedin.png" class="contact-icon"> linkedin.com/in/miguel-urena-pliego</a> &nbsp;<a href="https://github.com/MiguelUrenaPliego" class="contact-icon-link"><img src="./assets/icon_github.png" class="contact-icon"> github.com/MiguelUrenaPliego</a>
 
 </div>
 

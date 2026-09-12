@@ -24,7 +24,7 @@
     },
     {
       "name": "intro_attributes",
-      "url": "maps/intro/index.html?view=attributes&theme=dark",
+      "url": "maps/intro/index.html?view=attributes",
       "frames": 5,
       "wait_ms": 10000,
       "interval_ms": 3000

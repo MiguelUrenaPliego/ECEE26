@@ -22,7 +22,7 @@ section {
   font-size: 26px;
   position: relative;
   /* content box: pptx x=838200/y=1825625 ext=10515600x4351338 EMU */
-  padding: 100px 88px 130px 88px;
+  padding: 100px 88px 88px 88px;
   justify-content: flex-start;
 }
 
@@ -143,7 +143,7 @@ footer {
 footer img.logo-ecee {
   position: absolute;
   left: 14px;
-  top: 606px;
+  top: 650px;
   width: 240px;
   height: auto;
   z-index: 1;
@@ -160,7 +160,7 @@ footer::before {
   position: absolute;
   left: 0;
   right: 0;
-  top: 600px;
+  top: 644px;
   height: 2px;
   background: var(--ecee-yellow);
   z-index: 0;
@@ -169,7 +169,7 @@ footer::before {
 footer img.logo-rptu {
   position: absolute;
   right: 118px;
-  top: 616px;
+  top: 660px;
   width: 100px;
   height: 37px;
   z-index: 1;
@@ -178,16 +178,19 @@ footer img.logo-rptu {
 footer img.logo-tuberlin {
   position: absolute;
   right: 14px;
-  top: 623px;
+  top: 667px;
   width: 86px;
   height: 30px;
   z-index: 1;
 }
 
 footer .footer-caption {
+  /* Bottom-anchored (not top-anchored): the caption can be 2 or 3 lines
+     depending on content, and anchoring from the bottom means it grows
+     upward instead of ever overflowing past the slide's bottom edge. */
   position: absolute;
   left: 264px;
-  top: 605px;
+  bottom: 12px;
   right: 228px;
   text-align: center;
   font-size: 20px;
@@ -214,7 +217,7 @@ section::after {
   font-size: 22px;
   color: var(--ecee-text);
   font-family: Arial, Helvetica, sans-serif;
-  z-index: 1;
+  z-index: 5;
 }
 
 /* ============================================================
@@ -488,7 +491,7 @@ section.title footer .footer-caption {
 .slide-ref {
   position: absolute;
   right: 40px;
-  bottom: calc(720px - 600px + 6px);
+  bottom: calc(720px - 644px + 6px);
   font-size: 12px;
   color: var(--ecee-gray);
   font-family: Arial, Helvetica, sans-serif;
@@ -566,4 +569,13 @@ section.map::after {
   background: rgba(255, 255, 255, 0.88);
   padding: 2px 6px;
   border-radius: 4px;
+}
+
+/* A citation floating directly over map imagery needs its own backing
+   panel too, same treatment as the page number above. */
+section.map .slide-ref {
+  background: rgba(255, 255, 255, 0.88);
+  padding: 2px 8px;
+  border-radius: 4px;
+  z-index: 4;
 }
