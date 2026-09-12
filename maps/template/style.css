@@ -9,7 +9,7 @@
      read from across a room on a projector, not hovered over on a laptop.
      Every panel/legend/table font-size below is in rem, so this one value
      scales the whole UI — tune it here rather than per-rule. */
-  font-size: 20px;
+  font-size: 15px;
 
   --bg: #0a0c0f;
   --panel: rgba(22, 27, 33, 0.48);

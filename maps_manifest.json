@@ -31,7 +31,7 @@
     },
     {
       "name": "intro_conclusion",
-      "url": "maps/intro/index.html?view=attributes_noplot",
+      "url": "maps/intro/index.html?view=attributes_noplot&bare=1&dataset=naco",
       "frames": 4,
       "wait_ms": 10000,
       "interval_ms": 3000

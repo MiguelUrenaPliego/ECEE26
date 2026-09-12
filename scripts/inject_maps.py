@@ -36,12 +36,19 @@ NAME_RE = re.compile(r'\bmap-slot--([\w-]+)\b')
 FALLBACK_SCRIPT = """
 <script data-injected-by="inject_maps.py">
 (function () {
-  // A Marp deck is one long scrolling page: if every map's iframe loaded
-  // eagerly, all of them would run their WebGL context (MapLibre + deck.gl)
-  // at once. Browsers cap total WebGL contexts per page (commonly ~16), so
-  // with this many maps the oldest ones get silently evicted and basemap/
-  // deck.gl layers stop rendering. Loading (and unloading) each iframe's
-  // src based on scroll proximity keeps only the nearby maps live.
+  // A Marp deck keeps every slide's <section> in the DOM at once: if every
+  // map's iframe loaded eagerly, all of them would run their WebGL context
+  // (MapLibre + deck.gl) at once. Browsers cap total WebGL contexts per page
+  // (commonly ~16), so with this many maps the oldest ones get silently
+  // evicted and basemap/deck.gl layers stop rendering. To still make
+  // navigation feel instant, a big rootMargin preloads several slides ahead
+  // (and behind) of the current one, while a small LRU cap guarantees we
+  // never keep more iframes live than the browser can actually render --
+  // the least-recently-visible one is unloaded first whenever a new map
+  // needs to load and the cap is already full.
+  var MAX_CONCURRENT = 6;
+  var liveOrder = []; // oldest-visited first
+
   function fallback(iframe, name) {
     if (iframe.dataset.fellBack) return;
     iframe.dataset.fellBack = '1';
@@ -54,11 +61,25 @@ FALLBACK_SCRIPT = """
     iframe.replaceWith(img);
   }
 
-  function load(iframe, name) {
+  function unload(iframe) {
     if (iframe.dataset.fellBack) return;
-    var src = iframe.dataset.mapSrc;
+    iframe.removeAttribute('src');
+    liveOrder = liveOrder.filter(function (x) { return x !== iframe; });
+  }
+
+  function load(iframe, name) {
+    if (iframe.dataset.fellBack || iframe.getAttribute('src')) return;
     if (location.protocol === 'file:') { fallback(iframe, name); return; }
+
+    while (liveOrder.length >= MAX_CONCURRENT) {
+      var victim = liveOrder.find(function (x) { return !visible.has(x); });
+      if (!victim) break; // every live iframe is currently visible; let it exceed the cap slightly
+      unload(victim);
+    }
+
+    var src = iframe.dataset.mapSrc;
     iframe.src = src;
+    liveOrder.push(iframe);
     fetch(src, { method: 'HEAD' })
       .then(function (r) { if (!r.ok) fallback(iframe, name); })
       .catch(function () { fallback(iframe, name); });
@@ -67,25 +88,47 @@ FALLBACK_SCRIPT = """
     setTimeout(function () { if (!loaded) fallback(iframe, name); }, 6000);
   }
 
-  function unload(iframe) {
-    if (iframe.dataset.fellBack) return;
-    iframe.removeAttribute('src');
-  }
+  var visible = new Set();
 
   var observer = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
       var iframe = entry.target;
       var name = iframe.getAttribute('data-map-name');
       if (entry.isIntersecting) {
-        if (!iframe.getAttribute('src')) load(iframe, name);
+        visible.add(iframe);
+        load(iframe, name);
       } else {
-        unload(iframe);
+        visible.delete(iframe);
       }
     });
-  }, { rootMargin: '1000px 0px' });
+  }, { rootMargin: '2600px 0px' });
 
   document.querySelectorAll('iframe[data-map-name]').forEach(function (iframe) {
     observer.observe(iframe);
+  });
+})();
+</script>
+""".strip()
+
+# Invisible bottom-left / bottom-right click zones on every slide that step
+# to the previous/next slide -- dispatched as a real ArrowLeft/ArrowRight
+# keydown so it reuses Marp's own bespoke navigation listener (attached to
+# `document`) instead of reimplementing slide-stepping logic here.
+NAV_CLICK_SCRIPT = """
+<script data-injected-by="inject_maps.py">
+(function () {
+  document.querySelectorAll('section').forEach(function (section) {
+    ['left', 'right'].forEach(function (side) {
+      var zone = document.createElement('div');
+      zone.className = 'nav-click-zone nav-click-zone--' + side;
+      zone.addEventListener('click', function (e) {
+        e.stopPropagation();
+        document.dispatchEvent(new KeyboardEvent('keydown', {
+          key: side === 'left' ? 'ArrowLeft' : 'ArrowRight'
+        }));
+      });
+      section.appendChild(zone);
+    });
   });
 })();
 </script>
@@ -130,7 +173,9 @@ def main():
         print(f"WARNING: no maps_manifest.json entry for: {sorted(set(missing))}")
 
     if 'data-injected-by="inject_maps.py"' not in new_html:
-        new_html = new_html.replace("</body>", f"{FALLBACK_SCRIPT}\n</body>", 1)
+        new_html = new_html.replace(
+            "</body>", f"{FALLBACK_SCRIPT}\n{NAV_CLICK_SCRIPT}\n</body>", 1
+        )
 
     path.write_text(new_html, encoding="utf-8")
     print(f"Wrote {path}")

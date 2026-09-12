@@ -298,10 +298,14 @@ section.title {
   align-items: center;
   justify-content: center;
   width: 100%;
+  padding: 0 40px;
+  box-sizing: border-box;
 }
 
 .shape-figure {
-  max-width: 48%;
+  flex: 0 1 44%;
+  min-width: 0;
+  max-width: 44%;
   max-height: 460px;
   object-fit: contain;
 }
@@ -412,6 +416,28 @@ section.title {
   opacity: 0.22;
   z-index: 0;
   pointer-events: none;
+}
+
+/* Invisible click-to-navigate corners (bottom-left = previous, bottom-right
+   = next), added to every slide so presenting doesn't require a visible
+   button -- the center of the slide stays free for interacting with the
+   embedded maps. */
+.nav-click-zone {
+  position: absolute;
+  bottom: 0;
+  width: 20%;
+  height: 18%;
+  z-index: 50;
+  cursor: pointer;
+  background: transparent;
+}
+
+.nav-click-zone--left {
+  left: 0;
+}
+
+.nav-click-zone--right {
+  right: 0;
 }
 
 section.title h1 {

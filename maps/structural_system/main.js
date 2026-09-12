@@ -913,6 +913,7 @@ function renderMetricsTable() {
 // prefixes, camelCase suffixes), not written for display.
 const FEATURE_NAME_SHORTENINGS = [
   [/^GNDTII_/, "GNDTbx "],
+  [/beta(\d+)/gi, "b$1"],
   [/^ASCE7_/, "ASCE7 "],
   [/^EC8_/, "EC8 "],
   [/^NTC23_/, "NTC23 "],

@@ -53,6 +53,13 @@ const SHOW_LEGEND = !CLEAN_VIEW;
 // icon-button row, the settings/controls chrome, and the floating dataset
 // name labels, leaving just the map itself.
 const BARE_VIEW = CLEAN_VIEW && URL_PARAMS.get("bare") === "1";
+// &dataset=<id>: pins the spotlight to one dataset forever instead of
+// cycling (e.g. a decorative embed that should always read as "Naco").
+const LOCK_DATASET_INDEX = (() => {
+  const id = URL_PARAMS.get("dataset");
+  const idx = DATASETS.findIndex((d) => d.id === id);
+  return idx === -1 ? null : idx;
+})();
 
 // ---------------------------------------------------------------------------
 // Timing (all ms).
@@ -675,13 +682,13 @@ function renderBarGroups(containerId, groups) {
   let y = 6;
   let rows = "";
   for (const group of groups) {
-    rows += `<text x="0" y="${y + 13}" font-size="15" fill="var(--muted)">${group.label}</text>`;
+    rows += `<text x="0" y="${y + 13}" font-size="11" fill="var(--muted)">${group.label}</text>`;
     let by = y;
     for (const bar of group.bars) {
       const w = Math.max(2, bar.pct * barWidth);
-      rows += `<text x="${labelWidth}" y="${by + barHeight - 4}" font-size="13" fill="var(--faint)">${bar.tag}</text>`;
+      rows += `<text x="${labelWidth}" y="${by + barHeight - 4}" font-size="10" fill="var(--faint)">${bar.tag}</text>`;
       rows += `<rect x="${labelWidth + tagWidth}" y="${by}" width="${w}" height="${barHeight}" rx="3" fill="${bar.color}"></rect>`;
-      rows += `<text x="${labelWidth + tagWidth + w + 8}" y="${by + barHeight - 4}" font-size="14" fill="var(--text)">${bar.count} (${Math.round(bar.pct * 100)}%)</text>`;
+      rows += `<text x="${labelWidth + tagWidth + w + 8}" y="${by + barHeight - 4}" font-size="10.5" fill="var(--text)">${bar.count} (${Math.round(bar.pct * 100)}%)</text>`;
       by += barHeight + barGap;
     }
     y = by + groupGap - barGap;
@@ -801,7 +808,7 @@ function startOrbit() {
   if (ATTRIBUTES_VIEW) {
     const tick = () => {
       state.attrTick += 1;
-      if (state.attrTick % ATTRS.length === 0) {
+      if (LOCK_DATASET_INDEX === null && state.attrTick % ATTRS.length === 0) {
         state.spotlightIndex = (state.spotlightIndex + 1) % DATASETS.length;
         const cam = perDatasetCamera(DATASETS[state.spotlightIndex]);
         map.easeTo({ center: cam.center, zoom: cam.zoom, pitch: TILT_PITCH, duration: TILT_TRANSITION_MS });
@@ -814,6 +821,7 @@ function startOrbit() {
     cycleTimer = setInterval(tick, ATTR_TICK_MS);
   } else {
     const cycleSpotlight = () => {
+      if (LOCK_DATASET_INDEX !== null) return;
       state.spotlightIndex = (state.spotlightIndex + 1) % DATASETS.length;
       updateSubtitle();
       renderLayers();
@@ -861,7 +869,7 @@ map.on("click", () => registerUserInteraction());
 function enterOrbit(deferRotationMs = 0) {
   state.phase = "orbit";
   setIs3D(true);
-  state.spotlightIndex = 0;
+  state.spotlightIndex = LOCK_DATASET_INDEX ?? 0;
   state.attrTick = 0;
   updateSubtitle();
   renderLegend();
@@ -881,7 +889,7 @@ function runSequence() {
   // first dataset's own bounds, instead of replaying the world-zoom/flat
   // lead-in and the combined-bounds framing every time.
   if (ATTRIBUTES_VIEW) {
-    const cam = perDatasetCamera(DATASETS[0]);
+    const cam = perDatasetCamera(DATASETS[LOCK_DATASET_INDEX ?? 0]);
     map.jumpTo({ center: cam.center, zoom: cam.zoom, pitch: TILT_PITCH, bearing: 0 });
     enterOrbit();
     return;
