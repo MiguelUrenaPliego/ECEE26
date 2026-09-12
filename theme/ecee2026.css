@@ -248,12 +248,14 @@ section.title {
   width: 56%;
   height: 470px;
   border: none;
+  object-fit: cover;
 }
 
 .conclusion-item {
   width: 32%;
   height: 420px;
   border: 1px solid #ccc;
+  object-fit: cover;
 }
 
 .conclusion-row {
