@@ -13,7 +13,7 @@ const { MapboxOverlay } = deck;
 // Datasets. "naco" is the Random700Sample export, renamed per the brief.
 const DATASETS = {
   quisquella: { label: "Ensanche Quisquella", dir: "../../data/roof/quisquella" },
-  naco: { label: "Naco", dir: "../../data/roof/naco" },
+  naco: { label: "Centro", dir: "../../data/roof/naco" },
 };
 const DEFAULT_DATASET = "quisquella";
 

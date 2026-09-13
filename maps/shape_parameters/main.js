@@ -14,7 +14,7 @@ const { MapboxOverlay } = deck;
 
 const DATASETS = {
   quisquella: { label: "Ensanche Quisquella", dir: "../../data/shape_parameters/quisquella" },
-  naco: { label: "Naco", dir: "../../data/shape_parameters/naco" },
+  naco: { label: "Centro", dir: "../../data/shape_parameters/naco" },
 };
 const DEFAULT_DATASET = "quisquella";
 

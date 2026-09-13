@@ -23,7 +23,7 @@ const { MapboxOverlay } = deck;
 
 const DATASETS = {
   quisquella: { label: "Ensanche Quisquella", dir: "../../data/structural_system/quisquella" },
-  naco: { label: "Naco", dir: "../../data/structural_system/naco" },
+  naco: { label: "Centro", dir: "../../data/structural_system/naco" },
 };
 const DEFAULT_DATASET = "quisquella";
 const DATA_ROOT = "../../data/structural_system";
@@ -575,7 +575,7 @@ function renderLegend() {
 // Chart helpers (plain inline SVG, no charting library -- same pattern as
 // every other map in this project).
 const CHART_WIDTH = 280;
-const CHART_HEIGHT = 190;
+const CHART_HEIGHT = 130;
 const CHART_MARGIN = { top: 26, right: 10, bottom: 46, left: 34 };
 
 function barChartSvg({ entries, colorFor, maxOverride, marginBottom = CHART_MARGIN.bottom, rotateLabels = true, topLabelFor, yFormat = (v) => Math.round(v) }) {
@@ -828,7 +828,13 @@ function renderConfusionMatrix() {
       const t = pct / 100;
       const [cr, cg, cb] = lerpColor(CM_LOW, CM_HIGH, t);
       const color = `rgb(${cr},${cg},${cb})`;
-      const textColor = t > 0.55 ? "#241804" : "#edf1f3";
+      // Pick text color from the cell's actual rendered luminance rather
+      // than the raw 0-1 blend fraction `t` -- the amber high end is a
+      // fairly dark/muted yellow, so mid-range cells were being called
+      // "light" (t > 0.55) well before the background was actually bright
+      // enough for dark text to read against it.
+      const luminance = 0.299 * cr + 0.587 * cg + 0.114 * cb;
+      const textColor = luminance > 150 ? "#241804" : "#edf1f3";
       const x = originX + c * cellSize;
       const y = originY + r * cellSize;
       cells += `<rect x="${x}" y="${y}" width="${cellSize - 2}" height="${cellSize - 2}" fill="${color}" rx="3"></rect>`;
@@ -912,8 +918,7 @@ function renderMetricsTable() {
 // come straight from the ML pipeline's own column names (verbose norm/code
 // prefixes, camelCase suffixes), not written for display.
 const FEATURE_NAME_SHORTENINGS = [
-  [/^GNDTII_/, "GNDTbx "],
-  [/beta(\d+)/gi, "b$1"],
+  [/^GNDTII_beta(\d+)_/, "GNDTβ$1 "],
   [/^ASCE7_/, "ASCE7 "],
   [/^EC8_/, "EC8 "],
   [/^NTC23_/, "NTC23 "],
@@ -930,7 +935,7 @@ const FEATURE_NAME_SHORTENINGS = [
 function shortenFeatureName(name) {
   let s = name;
   for (const [pattern, replacement] of FEATURE_NAME_SHORTENINGS) s = s.replace(pattern, replacement);
-  return s.length > 13 ? s.slice(0, 12) + "…" : s;
+  return s.length > 15 ? s.slice(0, 14) + "…" : s;
 }
 
 function renderFeatureImportance() {

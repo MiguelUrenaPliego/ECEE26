@@ -33,7 +33,7 @@ const STRUCTURAL_ROOT = "../../data/structural_system";
 const SHAPE_ROOT = "../../data/shape_parameters";
 const DATASETS = [
   { id: "quisquella", label: "Ensanche Quisquella", short: "Quisquella", accent: "#e2a33f" },
-  { id: "naco", label: "Naco", short: "Naco", accent: "#43b6c9" },
+  { id: "naco", label: "Centro", short: "Centro", accent: "#43b6c9" },
 ];
 const COUNTRY_LABEL = "Santo Domingo, Dominican Republic";
 
@@ -682,13 +682,13 @@ function renderBarGroups(containerId, groups) {
   let y = 6;
   let rows = "";
   for (const group of groups) {
-    rows += `<text x="0" y="${y + 13}" font-size="11" fill="var(--muted)">${group.label}</text>`;
+    rows += `<text x="0" y="${y + 13}" font-size="10" fill="var(--muted)">${group.label}</text>`;
     let by = y;
     for (const bar of group.bars) {
       const w = Math.max(2, bar.pct * barWidth);
-      rows += `<text x="${labelWidth}" y="${by + barHeight - 4}" font-size="10" fill="var(--faint)">${bar.tag}</text>`;
+      rows += `<text x="${labelWidth}" y="${by + barHeight - 4}" font-size="9" fill="var(--faint)">${bar.tag}</text>`;
       rows += `<rect x="${labelWidth + tagWidth}" y="${by}" width="${w}" height="${barHeight}" rx="3" fill="${bar.color}"></rect>`;
-      rows += `<text x="${labelWidth + tagWidth + w + 8}" y="${by + barHeight - 4}" font-size="10.5" fill="var(--text)">${bar.count} (${Math.round(bar.pct * 100)}%)</text>`;
+      rows += `<text x="${labelWidth + tagWidth + w + 8}" y="${by + barHeight - 4}" font-size="10" fill="var(--text)">${bar.count} (${Math.round(bar.pct * 100)}%)</text>`;
       by += barHeight + barGap;
     }
     y = by + groupGap - barGap;

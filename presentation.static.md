@@ -3,7 +3,7 @@ marp: true
 theme: ecee2026
 paginate: true
 html: true
-footer: '<img class="logo-ecee" src="./assets/ecee2026_logo.png" alt="ECEE2026 logo" /><img class="skyline" src="./assets/skyline_footer.png" alt="" /><img class="logo-rptu" src="./assets/rptu_logo.png" alt="RPTU logo" /><img class="logo-tuberlin" src="./assets/tuberlin_logo.png" alt="TU Berlin logo" /><span class="footer-caption">ML structural system classification &mdash; Ureña-Pliego et al.<br><a href="https://miguelurenapliego.github.io/ECEE26/">miguelurenapliego.github.io/ECEE26</a></span>'
+footer: '<img class="logo-ecee" src="./assets/ecee2026_logo.png" alt="ECEE2026 logo" /><img class="skyline" src="./assets/skyline_footer.png" alt="" /><img class="logo-rptu" src="./assets/rptu_logo.png" alt="RPTU logo" /><img class="logo-tuberlin" src="./assets/tuberlin_logo.png" alt="TU Berlin logo" /><span class="footer-caption">ML structural system classification<span class="footer-dash"> &mdash; </span><span class="footer-author">Ureña-Pliego et al.</span><br class="footer-break"><a href="https://miguelurenapliego.github.io/ECEE26/">miguelurenapliego.github.io/ECEE26</a></span>'
 ---
 
 <!-- _class: title -->
@@ -271,14 +271,14 @@ Miguel Ureña-Pliego<sup>1,*</sup>, Javier Rodríguez-Saiz<sup>1,2</sup>, Javier
 
 </div>
 
-<span class="slide-ref">[Wang et al., 2019](https://doi.org/10.5281/zenodo.3483208)</span>
+<span class="slide-ref">[Lopes et al., 2023](https://doi.org/10.1007/978-3-031-49011-8_41)</span>
 
 ---
 
 
 <!-- _class: map -->
 
-# Structural system
+# Structural system: Datasets
 
 <!-- MAP:structural_system_split -->
 <img src="./figures/maps_gif/structural_system_split.jpg" alt="structural system split map">
@@ -287,7 +287,7 @@ Miguel Ureña-Pliego<sup>1,*</sup>, Javier Rodríguez-Saiz<sup>1,2</sup>, Javier
 
 <!-- _class: map -->
 
-# Structural system
+# Structural system: Metrics
 
 <!-- MAP:structural_system_metrics -->
 <img src="./figures/maps_gif/structural_system_metrics.jpg" alt="structural system metrics map">
@@ -296,7 +296,7 @@ Miguel Ureña-Pliego<sup>1,*</sup>, Javier Rodríguez-Saiz<sup>1,2</sup>, Javier
 
 <!-- _class: map -->
 
-# Structural system
+# Structural system: Explainability
 
 <!-- MAP:structural_system_feature_importance -->
 <img src="./figures/maps_gif/structural_system_feature_importance.jpg" alt="structural system feature importance map">
@@ -305,7 +305,7 @@ Miguel Ureña-Pliego<sup>1,*</sup>, Javier Rodríguez-Saiz<sup>1,2</sup>, Javier
 
 <!-- _class: map -->
 
-# Structural system
+# Structural system: Generalizability
 
 <!-- MAP:structural_system_comparison -->
 <img src="./figures/maps_gif/structural_system_comparison.jpg" alt="structural system comparison map">
@@ -330,16 +330,13 @@ Miguel Ureña-Pliego<sup>1,*</sup>, Javier Rodríguez-Saiz<sup>1,2</sup>, Javier
 
 <div class="apa-refs">
 
-<p class="apa-ref">Bishop, C. M. (2006). <em>Pattern recognition and machine learning</em>. Springer.</p>
 <p class="apa-ref">Brzev, S., Scawthorn, C., Silva, V., et al. (2013). <em>GEM building taxonomy version 2.0</em>. https://doi.org/10.13117/GEM.EXP-MOD.TR2013.02</p>
 <p class="apa-ref">GEM Foundation. (n.d.). <em>Dominican Republic exposure model</em> [Data set]. OpenQuake Global Risk Model. https://docs.openquake.org/global_risk_model/exposure/Caribbean_Central_America/Dominican_Republic/README.html</p>
 <p class="apa-ref">GeomaticsCaminosUPM. (n.d.). <em>footprint_attributes</em> [Computer software]. GitHub. https://github.com/GeomaticsCaminosUPM/footprint_attributes</p>
-<p class="apa-ref">Jiménez-Martínez, M., Navas-Sánchez, L., et al. (2024). A methodology to assess and select seismic fragility curves: Calibration from expert survey and fuzzy analysis. <em>International Journal of Disaster Risk Reduction</em>. https://doi.org/10.1016/j.ijdrr.2024.104930</p>
+<p class="apa-ref">Lopes, J., Gouveia, F., Silva, V., Moreira, R. S., Torres, J. M., Guerreiro, M., &amp; Reis, L. P. (2023). Using deep learning for building stock classification in seismic risk analysis. In <em>Progress in Artificial Intelligence</em> (Lecture Notes in Computer Science, pp. 523–534). Springer. https://doi.org/10.1007/978-3-031-49011-8_41</p>
 <p class="apa-ref">Marconcini, M., Esch, T., et al. (2021). Understanding current trends in global urbanisation: The World Settlement Footprint suite. <em>GI_Forum</em>. https://doi.org/10.1553/giscience2021_01_s33</p>
 <p class="apa-ref">Torres, Y., Martínez-Cuevas, S., et al. (2023). Using remote sensing for exposure and seismic vulnerability evaluation: Is it reliable? <em>International Journal of Remote Sensing</em>. https://doi.org/10.1080/15481603.2023.2196162</p>
-<p class="apa-ref">Torres-Olivares, S., et al. (2025). Numerical study on the seismic behavior of aggregate reinforced concrete block masonry buildings. <em>Bulletin of Earthquake Engineering</em>. https://doi.org/10.1007/s10518-025-02262-2</p>
 <p class="apa-ref">Ureña-Pliego, M., Rodríguez-Saiz, J., Núñez-Álvarez, G., Marchamalo-Sacristán, M., &amp; González-Rodrigo, B. (2026). A methodology for the automated estimation of footprint-derived seismic behaviour modifiers in building exposure assessment. <em>Advanced Modeling and Simulation in Engineering Sciences</em>, <em>13</em>(1), Article 3. https://doi.org/10.1186/s40323-026-00323-y</p>
-<p class="apa-ref">Wang, C., Yu, Q., McKenna, F., Cetiner, B., Yu, S. X., Taciroglu, E., &amp; Law, K. H. (2019). <em>NHERI-SimCenter/BRAILS: v1.0.1</em> [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.3483208</p>
 <p class="apa-ref">Yepes-Estrada, C., Calderon, A., et al. (2023). Global building exposure model for earthquake risk assessment. <em>Earthquake Spectra</em>. https://doi.org/10.1177/87552930231194048</p>
 <p class="apa-ref">Zhu, X. X., Chen, S., Zhang, F., Shi, Y., &amp; Wang, Y. (2025). GlobalBuildingAtlas: An open global and complete dataset of building polygons, heights and LoD1 3D models. <em>Earth System Science Data</em>, <em>17</em>(12), 6647–6668. https://doi.org/10.5194/essd-17-6647-2025</p>
 

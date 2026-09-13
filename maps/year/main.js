@@ -13,7 +13,7 @@ const { MapboxOverlay } = deck;
 // Datasets.
 const DATASETS = {
   quisquella: { label: "Ensanche Quisquella", dir: "../../data/year/quisquella" },
-  naco: { label: "Naco", dir: "../../data/year/naco" },
+  naco: { label: "Centro", dir: "../../data/year/naco" },
 };
 const DEFAULT_DATASET = "quisquella";
 
@@ -391,7 +391,7 @@ function renderLayerControls() {
 // breakdown. Plain inline SVG, no charting library, same pattern as every
 // other map's charts.
 const CHART_WIDTH = 280;
-const CHART_HEIGHT = 190;
+const CHART_HEIGHT = 130;
 const CHART_MARGIN = { top: 26, right: 6, bottom: 30, left: 34 };
 const YEAR_BUCKET_SIZE = 5;
 
