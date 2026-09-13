@@ -135,17 +135,22 @@ const VIEW_PRESETS = {
   },
   feature_importance: {
     colorModes: ["truth", "predicted", "error", "uncertainty", "consensus"],
-    charts: ["feature_importance", "learning_curve"],
+    charts: ["feature_importance"],
   },
   comparison: {
     colorModes: ["truth", "predicted", "error", "uncertainty", "consensus"],
     defaultExperiment: "loo_santo_domingo",
-    charts: ["experiment_compare"],
+    charts: ["experiment_compare", "learning_curve"],
   },
 };
 const URL_PARAMS = new URLSearchParams(location.search);
 const ACTIVE_VIEW = VIEW_PRESETS[URL_PARAMS.get("view")] ? URL_PARAMS.get("view") : null;
 const INITIAL_EXPERIMENT = (ACTIVE_VIEW && VIEW_PRESETS[ACTIVE_VIEW].defaultExperiment) || DEFAULT_EXPERIMENT;
+// &colorMode=<name>: pins the showcase to one color-by mode forever instead
+// of cycling through truth/predicted/error/uncertainty/consensus (e.g. a
+// static-screenshot embed that should always show "error", not whichever
+// mode the cycle happened to land on).
+const LOCK_COLOR_MODE = URL_PARAMS.get("colorMode");
 
 // ---------------------------------------------------------------------------
 // State.
@@ -574,7 +579,7 @@ function renderLegend() {
 // ---------------------------------------------------------------------------
 // Chart helpers (plain inline SVG, no charting library -- same pattern as
 // every other map in this project).
-const CHART_WIDTH = 280;
+const CHART_WIDTH = 220;
 const CHART_HEIGHT = 130;
 const CHART_MARGIN = { top: 26, right: 10, bottom: 46, left: 34 };
 
@@ -814,7 +819,7 @@ function renderConfusionMatrix() {
   }
   const { labels, matrix } = cm;
   const n = labels.length;
-  const cellSize = Math.min(56, Math.floor((CHART_WIDTH - 60) / n));
+  const cellSize = Math.min(44, Math.floor((CHART_WIDTH - 60) / n));
   const originX = 60;
   const originY = 38;
   const CM_LOW = hexToRgb("#14181d"); // panel-solid, "0%"
@@ -838,8 +843,14 @@ function renderConfusionMatrix() {
       const x = originX + c * cellSize;
       const y = originY + r * cellSize;
       cells += `<rect x="${x}" y="${y}" width="${cellSize - 2}" height="${cellSize - 2}" fill="${color}" rx="3"></rect>`;
-      cells += `<text x="${x + (cellSize - 2) / 2}" y="${y + (cellSize - 2) / 2 - 3}" text-anchor="middle" class="chart-bar-label" fill="${textColor}">${count}</text>`;
-      cells += `<text x="${x + (cellSize - 2) / 2}" y="${y + (cellSize - 2) / 2 + 12}" text-anchor="middle" class="chart-axis-label" fill="${textColor}">${pct.toFixed(0)}%</text>`;
+      // style= (not the fill= presentation attribute) because in SVG a CSS
+      // class rule always wins over a presentation attribute -- .chart-bar
+      // -label / .chart-axis-label both declare their own fixed `fill`, so
+      // a plain fill="..." here was being silently overridden by the CSS,
+      // and every cell rendered in that fixed muted color regardless of
+      // this computed textColor.
+      cells += `<text x="${x + (cellSize - 2) / 2}" y="${y + (cellSize - 2) / 2 - 3}" text-anchor="middle" class="chart-bar-label" style="fill:${textColor}">${count}</text>`;
+      cells += `<text x="${x + (cellSize - 2) / 2}" y="${y + (cellSize - 2) / 2 + 12}" text-anchor="middle" class="chart-axis-label" style="fill:${textColor}">${pct.toFixed(0)}%</text>`;
     }
   }
   let rowLabels = "";
@@ -1415,6 +1426,10 @@ function startShowcase() {
   }
 
   const modes = availableColorModes();
+  if (LOCK_COLOR_MODE && modes.some((m) => m.name === LOCK_COLOR_MODE)) {
+    setColorMode(LOCK_COLOR_MODE, { fromShowcase: true });
+    return;
+  }
   showcaseAttributeIndex = showcaseAttributeIndex % modes.length;
   setColorMode(modes[showcaseAttributeIndex].name, { fromShowcase: true });
   showcaseAttributeTimer = setInterval(() => {

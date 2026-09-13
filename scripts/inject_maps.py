@@ -2,7 +2,7 @@
 Turns every `<div class="map-slot map-slot--<name> ...">` placeholder in an
 already-built Marp HTML file into a real `<iframe>` (URL looked up from
 maps_manifest.json by `<name>`), and appends the small fallback script that
-swaps a map for its pre-rendered GIF (figures/maps_gif/<name>.gif) if it
+swaps a map for its pre-rendered JPEG (figures/maps_gif/<name>.jpg) if it
 404s, can't be fetched (offline), or the page is opened via file://.
 
 Why this has to be a *post*-processing step, and why the URL is looked up
@@ -53,7 +53,7 @@ FALLBACK_SCRIPT = """
     if (iframe.dataset.fellBack) return;
     iframe.dataset.fellBack = '1';
     var img = document.createElement('img');
-    img.src = './figures/maps_gif/' + name + '.gif';
+    img.src = './figures/maps_gif/' + name + '.jpg';
     img.alt = name.replace(/_/g, ' ') + ' map (offline fallback)';
     var style = iframe.getAttribute('style');
     if (style) img.setAttribute('style', style);

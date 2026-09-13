@@ -1,103 +1,135 @@
 {
-  "_comment": "Single source of truth for every embedded map: the marker name matches the <!-- MAP:name --> comment right before its <iframe> in presentation.md. Used by scripts/capture_map_gifs.py (to render figures/maps_gif/<name>.gif/.jpg) and scripts/build_presentation_variants.py (to swap iframes for those images in the static/gif PDF variants).",
+  "_comment": "Single source of truth for every embedded map: the marker name matches the <!-- MAP:name --> comment right before its <iframe> in presentation.md. Used by scripts/capture_map_gifs.py (to render figures/maps_gif/<name>.jpg) and scripts/build_presentation_variants.py (to swap iframes for that image in the static PDF variant).",
   "maps": [
     {
       "name": "gem_exposure",
       "url": "maps/gem_exposure.html",
-      "frames": 4,
-      "wait_ms": 2500,
-      "interval_ms": 4000
+      "wait_ms": 2500
     },
     {
       "name": "title_bg",
       "url": "maps/intro/index.html?view=attributes_noplot&bare=1",
-      "frames": 3,
-      "wait_ms": 10000,
-      "interval_ms": 3000
+      "wait_ms": 10000
     },
     {
       "name": "intro",
       "url": "maps/intro/index.html",
-      "frames": 5,
-      "wait_ms": 12000,
-      "interval_ms": 4000
+      "wait_ms": 12000
     },
     {
       "name": "intro_attributes",
       "url": "maps/intro/index.html?view=attributes",
-      "frames": 5,
-      "wait_ms": 10000,
-      "interval_ms": 3000
+      "wait_ms": 10000
     },
     {
       "name": "intro_conclusion",
       "url": "maps/intro/index.html?view=attributes_noplot&bare=1&dataset=naco",
-      "frames": 4,
-      "wait_ms": 10000,
-      "interval_ms": 3000
+      "wait_ms": 10000
     },
     {
       "name": "height",
       "url": "maps/height/index.html",
-      "frames": 4,
+      "wait_ms": 3000
+    },
+    {
+      "name": "height_attr_height",
+      "url": "maps/height/index.html?attribute=height",
       "wait_ms": 3000,
-      "interval_ms": 10000
+      "static_only": true
+    },
+    {
+      "name": "height_attr_height_error",
+      "url": "maps/height/index.html?attribute=height_error",
+      "wait_ms": 3000,
+      "static_only": true
     },
     {
       "name": "relative_position",
       "url": "maps/relative_position/index.html",
-      "frames": 4,
-      "wait_ms": 3000,
-      "interval_ms": 10000
+      "wait_ms": 3000
     },
     {
       "name": "shape_parameters",
       "url": "maps/shape_parameters/index.html",
-      "frames": 5,
-      "wait_ms": 3000,
-      "interval_ms": 10000
+      "wait_ms": 3000
     },
     {
       "name": "roof_material",
       "url": "maps/roof_material/index.html",
-      "frames": 4,
-      "wait_ms": 3000,
-      "interval_ms": 10000
+      "wait_ms": 3000
     },
     {
       "name": "year",
       "url": "maps/year/index.html",
-      "frames": 4,
+      "wait_ms": 3000
+    },
+    {
+      "name": "year_attr_first_construction_year",
+      "url": "maps/year/index.html?attribute=first_construction_year",
       "wait_ms": 3000,
-      "interval_ms": 10000
+      "static_only": true
+    },
+    {
+      "name": "year_attr_last_modification_year",
+      "url": "maps/year/index.html?attribute=last_modification_year",
+      "wait_ms": 3000,
+      "static_only": true
+    },
+    {
+      "name": "year_attr_code_quality",
+      "url": "maps/year/index.html?attribute=code_quality",
+      "wait_ms": 3000,
+      "static_only": true
     },
     {
       "name": "structural_system_split",
       "url": "maps/structural_system/index.html?view=split",
-      "frames": 3,
-      "wait_ms": 3500,
-      "interval_ms": 10000
+      "wait_ms": 3500
     },
     {
       "name": "structural_system_metrics",
       "url": "maps/structural_system/index.html?view=metrics",
-      "frames": 5,
+      "wait_ms": 3500
+    },
+    {
+      "name": "structural_system_metrics_truth",
+      "url": "maps/structural_system/index.html?view=metrics&colorMode=truth",
       "wait_ms": 3500,
-      "interval_ms": 10000
+      "static_only": true
+    },
+    {
+      "name": "structural_system_metrics_predicted",
+      "url": "maps/structural_system/index.html?view=metrics&colorMode=predicted",
+      "wait_ms": 3500,
+      "static_only": true
+    },
+    {
+      "name": "structural_system_metrics_error",
+      "url": "maps/structural_system/index.html?view=metrics&colorMode=error",
+      "wait_ms": 3500,
+      "static_only": true
+    },
+    {
+      "name": "structural_system_metrics_uncertainty",
+      "url": "maps/structural_system/index.html?view=metrics&colorMode=uncertainty",
+      "wait_ms": 3500,
+      "static_only": true
+    },
+    {
+      "name": "structural_system_metrics_consensus",
+      "url": "maps/structural_system/index.html?view=metrics&colorMode=consensus",
+      "wait_ms": 3500,
+      "static_only": true
     },
     {
       "name": "structural_system_feature_importance",
       "url": "maps/structural_system/index.html?view=feature_importance",
-      "frames": 5,
-      "wait_ms": 3500,
-      "interval_ms": 10000
+      "wait_ms": 3500
     },
     {
       "name": "structural_system_comparison",
       "url": "maps/structural_system/index.html?view=comparison",
-      "frames": 4,
-      "wait_ms": 3500,
-      "interval_ms": 10000
+      "wait_ms": 3500
     }
   ]
 }

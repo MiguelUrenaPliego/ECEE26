@@ -178,7 +178,7 @@ Miguel Ureña-Pliego<sup>1,*</sup>, Javier Rodríguez-Saiz<sup>1,2</sup>, Javier
 
 <!-- _class: map -->
 
-# Height 
+# Height
 
 <!-- MAP:height -->
 <div class="map-slot map-slot--height"></div>

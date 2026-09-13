@@ -1,30 +1,29 @@
 # Exporting this deck
 
-The deck has three source files, all generated from one canonical version:
+The deck has two source files, both generated from one canonical version:
 
 | File | Map embeds | Use it for |
 |---|---|---|
-| `presentation.md` | live `<iframe>`, auto-falls back to GIF if a map 404s / is offline / opened via `file://` | GitHub Pages, live browser presenting |
-| `presentation.static.md` | static JPEG screenshot per map | PDF export, "static images" option |
-| `presentation.gif.md` | animated GIF per map (4-5 frames, ~10s each) | PDF export, "GIF" option |
+| `presentation.md` | live `<iframe>`, auto-falls back to a static JPEG if a map 404s / is offline / opened via `file://` | GitHub Pages, live browser presenting |
+| `presentation.static.md` | static JPEG screenshot per map | PDF export |
 
-`presentation.static.md` and `presentation.gif.md` are **generated** — don't
-hand-edit them. Edit `presentation.md`, then regenerate:
+`presentation.static.md` is **generated** — don't hand-edit it. Edit
+`presentation.md`, then regenerate:
 
 ```bash
 python3 scripts/build_presentation_variants.py
 ```
 
 It finds every `<div class="map-slot map-slot--<name> ...">` placeholder
-in `presentation.md` and swaps it for `figures/maps_gif/<name>.jpg` or
-`.gif`, keeping any other classes the placeholder had (that's how sizing
+in `presentation.md` and swaps it for `figures/maps_gif/<name>.jpg`,
+keeping any other classes the placeholder had (that's how sizing
 like `.gem-exposure-bg` / `.conclusion-item` survives — see
 `theme/ecee2026.css`). If you add a new map slide, just use that same
 `map-slot map-slot--<name>` pattern and list `<name>` in
 `maps_manifest.json`; both this script and `scripts/inject_maps.py` (used
 by `build_pages.sh`) pick it up automatically.
 
-## 1. Regenerating the map GIFs/JPEGs
+## 1. Regenerating the map JPEGs
 
 Only needed when a map's content changes (new data, new default view, etc.):
 
@@ -36,10 +35,12 @@ python3 -m venv .venv && .venv/bin/pip install playwright pillow
 ```
 
 Starts its own local HTTP server (the maps need `fetch()`, which doesn't
-work under `file://`), captures 3-5 JPEG-compressed frames per map, and
-writes `figures/maps_gif/<name>.gif` + `.jpg`. Then re-run
-`build_presentation_variants.py` (step above) so the two PDF variants pick
-up the new images.
+work under `file://`), captures one screenshot per map, and writes
+`figures/maps_gif/<name>.jpg`. Then re-run `build_presentation_variants.py`
+(step above) so the PDF variant picks up the new images. (The directory is
+still named `maps_gif` for historical reasons — it only holds static JPEGs
+now, animated GIFs were dropped since they only ever showed their first
+frame in PDF viewers anyway.)
 
 ## 2. GitHub Pages (live maps)
 
@@ -75,7 +76,7 @@ Then in the repo settings → Pages → "Deploy from a branch", pick the branch
 you pushed to and **"/ (root)"** as the folder — not `/docs`. The published
 page has real, interactive maps; if a viewer's browser can't reach a given
 `maps/<name>/index.html` (missing file, offline), the page swaps that one
-map for its GIF automatically — nothing else to do.
+map for its static JPEG automatically — nothing else to do.
 
 (If you'd rather keep the repo root clean and use a `/docs` folder for
 Pages instead, that works too — just also copy `maps/`, `figures/`,
@@ -93,33 +94,20 @@ python3 -m http.server 8080
 # open http://localhost:8080/index.html
 ```
 
-## 3. PDF — static images
+## 3. PDF
 
 ```bash
 marp --pdf --allow-local-files --theme-set theme/ecee2026.css -o presentation_static.pdf presentation.static.md
 ```
 
-## 4. PDF — GIFs
-
-PDF pages are static, so an embedded GIF only ever shows its first frame in
-most PDF viewers — a few viewers (some browsers' built-in PDF viewer) will
-still animate an embedded GIF. This is the "use the GIF" option requested;
-functionally it looks the same as the static-image PDF unless opened
-somewhere that animates it.
+## 4. PPTX (bonus)
 
 ```bash
-marp --pdf --allow-local-files --theme-set theme/ecee2026.css -o presentation_gif.pdf presentation.gif.md
-```
-
-## 5. PPTX (bonus — also benefits from the GIF fallback)
-
-```bash
-marp --pptx --allow-local-files --theme-set theme/ecee2026.css -o presentation.pptx presentation.gif.md
+marp --pptx --allow-local-files --theme-set theme/ecee2026.css -o presentation.pptx presentation.static.md
 ```
 
 PowerPoint doesn't run arbitrary iframes reliably either, so build the PPTX
-from `presentation.gif.md` (animated in PowerPoint's own slideshow view) or
-`presentation.static.md` (fully static).
+from `presentation.static.md` (fully static).
 
 ## Quick reference
 
@@ -130,9 +118,6 @@ python3 scripts/build_presentation_variants.py
 # GitHub Pages
 ./scripts/build_pages.sh
 
-# PDF, static images
+# PDF
 marp --pdf --allow-local-files --theme-set theme/ecee2026.css -o presentation_static.pdf presentation.static.md
-
-# PDF, GIFs
-marp --pdf --allow-local-files --theme-set theme/ecee2026.css -o presentation_gif.pdf presentation.gif.md
 ```

@@ -178,10 +178,22 @@ Miguel Ureña-Pliego<sup>1,*</sup>, Javier Rodríguez-Saiz<sup>1,2</sup>, Javier
 
 <!-- _class: map -->
 
-# Height 
+# Height
 
-<!-- MAP:height -->
-<img src="./figures/maps_gif/height.jpg" alt="height map">
+<!-- MAP:height_attr_height -->
+<img src="./figures/maps_gif/height_attr_height.jpg" alt="height attr height map">
+
+<span class="slide-ref">Zhu et al., 2025</span>
+
+
+---
+
+<!-- _class: map -->
+
+# Height error (vs. survey)
+
+<!-- MAP:height_attr_height_error -->
+<img src="./figures/maps_gif/height_attr_height_error.jpg" alt="height attr height error map">
 
 <span class="slide-ref">Zhu et al., 2025</span>
 
@@ -245,10 +257,34 @@ Miguel Ureña-Pliego<sup>1,*</sup>, Javier Rodríguez-Saiz<sup>1,2</sup>, Javier
 
 <!-- _class: map -->
 
-# Construction or modification year 
+# Construction or modification year: First construction year
 
-<!-- MAP:year -->
-<img src="./figures/maps_gif/year.jpg" alt="year map">
+<!-- MAP:year_attr_first_construction_year -->
+<img src="./figures/maps_gif/year_attr_first_construction_year.jpg" alt="year attr first construction year map">
+
+<span class="slide-ref">Marconcini et al., 2021</span>
+
+
+---
+
+<!-- _class: map -->
+
+# Construction or modification year: Last modification year
+
+<!-- MAP:year_attr_last_modification_year -->
+<img src="./figures/maps_gif/year_attr_last_modification_year.jpg" alt="year attr last modification year map">
+
+<span class="slide-ref">Marconcini et al., 2021</span>
+
+
+---
+
+<!-- _class: map -->
+
+# Construction or modification year: Code quality
+
+<!-- MAP:year_attr_code_quality -->
+<img src="./figures/maps_gif/year_attr_code_quality.jpg" alt="year attr code quality map">
 
 <span class="slide-ref">Marconcini et al., 2021</span>
 
@@ -287,10 +323,50 @@ Miguel Ureña-Pliego<sup>1,*</sup>, Javier Rodríguez-Saiz<sup>1,2</sup>, Javier
 
 <!-- _class: map -->
 
-# Structural system: Metrics
+# Structural system: Metrics (ground truth)
 
-<!-- MAP:structural_system_metrics -->
-<img src="./figures/maps_gif/structural_system_metrics.jpg" alt="structural system metrics map">
+<!-- MAP:structural_system_metrics_truth -->
+<img src="./figures/maps_gif/structural_system_metrics_truth.jpg" alt="structural system metrics truth map">
+
+
+---
+
+<!-- _class: map -->
+
+# Structural system: Metrics (predicted)
+
+<!-- MAP:structural_system_metrics_predicted -->
+<img src="./figures/maps_gif/structural_system_metrics_predicted.jpg" alt="structural system metrics predicted map">
+
+
+---
+
+<!-- _class: map -->
+
+# Structural system: Metrics (error)
+
+<!-- MAP:structural_system_metrics_error -->
+<img src="./figures/maps_gif/structural_system_metrics_error.jpg" alt="structural system metrics error map">
+
+
+---
+
+<!-- _class: map -->
+
+# Structural system: Metrics (uncertainty)
+
+<!-- MAP:structural_system_metrics_uncertainty -->
+<img src="./figures/maps_gif/structural_system_metrics_uncertainty.jpg" alt="structural system metrics uncertainty map">
+
+
+---
+
+<!-- _class: map -->
+
+# Structural system: Metrics (consensus)
+
+<!-- MAP:structural_system_metrics_consensus -->
+<img src="./figures/maps_gif/structural_system_metrics_consensus.jpg" alt="structural system metrics consensus map">
 
 ---
 

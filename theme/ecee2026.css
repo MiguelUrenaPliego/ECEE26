@@ -626,38 +626,23 @@ section.map {
   padding: 0;
 }
 
-/* Full-bleed on left/right; stops above the footer band (88px, same
-   reservation a normal slide's content box gets) instead of running under
-   it -- the footer no longer needs its own translucent backing since the
-   map itself never extends behind it. */
+/* Full-bleed on left/right; stops exactly at the yellow rule (720 - 644 =
+   76px) instead of the wider 88px content-box reservation -- otherwise a
+   sliver of plain white shows between the map and the rule, before the
+   footer band even starts. */
 section.map > img,
 section.map > iframe,
 section.map > div.map-slot {
   position: absolute;
-  inset: 0 0 88px 0;
+  inset: 0 0 76px 0;
   width: 100%;
-  height: calc(100% - 88px);
+  height: calc(100% - 76px);
   border: none;
   object-fit: cover;
 }
 
 section.map header {
   display: none;
-}
-
-/* Soften the hard cut where the map stops above the footer -- a short fade
-   to white instead of the map's own content ending abruptly right at the
-   footer line. */
-section.map::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 88px;
-  height: 48px;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.95) 100%);
-  z-index: 1;
-  pointer-events: none;
 }
 
 /* Title bar — only rendered when the slide actually has an <h1>. Text sits
@@ -676,6 +661,10 @@ section.map h1 {
   line-height: 1.15;
   background: linear-gradient(to bottom, rgba(255, 255, 255, 0.88) 0%, rgba(255, 255, 255, 0.88) 75%, rgba(255, 255, 255, 0) 100%);
   z-index: 2;
+  /* Purely a visual backing panel -- let clicks/touches pass through to the
+     map's own controls underneath it (e.g. the icon-button row, which sits
+     partly behind this bar) instead of the panel intercepting them. */
+  pointer-events: none;
 }
 
 section.map::after {

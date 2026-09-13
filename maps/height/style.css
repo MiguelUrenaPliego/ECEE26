@@ -5,7 +5,7 @@
 :root {
   color-scheme: light;
   font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-  font-size: 13px;
+  font-size: 17px;
 
   --bg: #eef1f3;
   --panel: rgba(255, 255, 255, 0.72);
@@ -89,11 +89,11 @@ body,
    legend must stay visible at all times, video mode included. */
 #controls {
   position: absolute;
-  top: 145px;
+  top: 118px;
   left: 16px;
   z-index: 10;
-  width: 380px;
-  max-height: calc(100vh - 161px);
+  width: 300px;
+  max-height: calc(100vh - 134px);
   overflow-y: auto;
   border-radius: 14px;
   padding: 22px;
@@ -425,11 +425,11 @@ body,
    past the actual chart card, reading as an oversized empty gray box. */
 #charts-panel {
   position: absolute;
-  top: 145px;
+  top: 118px;
   right: 16px;
   z-index: 10;
   width: 420px;
-  max-height: calc(100vh - 161px);
+  max-height: calc(100vh - 134px);
   overflow-y: auto;
   border-radius: 14px;
   padding: 22px;

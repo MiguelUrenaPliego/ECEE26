@@ -107,6 +107,9 @@ const state = {
 // ---------------------------------------------------------------------------
 // Map + deck.gl overlay.
 const URL_PARAMS = new URLSearchParams(location.search);
+// &attribute=<name>: pins the showcase to one color-by attribute forever
+// instead of cycling through ATTRIBUTES.
+const LOCK_ATTRIBUTE = URL_PARAMS.get("attribute");
 const DARK_THEME = URL_PARAMS.get("theme") === "dark";
 if (DARK_THEME) document.body.classList.add("theme-dark");
 const MAP_STYLE = DARK_THEME
@@ -390,7 +393,7 @@ function renderLayerControls() {
 // code-quality mapping table (static reference), and the code-quality
 // breakdown. Plain inline SVG, no charting library, same pattern as every
 // other map's charts.
-const CHART_WIDTH = 280;
+const CHART_WIDTH = 220;
 const CHART_HEIGHT = 130;
 const CHART_MARGIN = { top: 26, right: 6, bottom: 30, left: 34 };
 const YEAR_BUCKET_SIZE = 5;
@@ -676,7 +679,7 @@ function createDropdown(container, options, onChange) {
 let showcaseRotateFrame = null;
 let showcaseAttributeTimer = null;
 let showcaseIdleTimer = null;
-let showcaseAttributeIndex = 0;
+let showcaseAttributeIndex = Math.max(0, ATTRIBUTES.findIndex((a) => a.name === LOCK_ATTRIBUTE));
 
 function startShowcase() {
   if (state.showcaseActive) return;
@@ -696,10 +699,12 @@ function startShowcase() {
   }
 
   setAttribute(ATTRIBUTES[showcaseAttributeIndex], { fromShowcase: true });
-  showcaseAttributeTimer = setInterval(() => {
-    showcaseAttributeIndex = (showcaseAttributeIndex + 1) % ATTRIBUTES.length;
-    setAttribute(ATTRIBUTES[showcaseAttributeIndex], { fromShowcase: true });
-  }, SHOWCASE_ATTRIBUTE_CYCLE_MS);
+  if (!LOCK_ATTRIBUTE) {
+    showcaseAttributeTimer = setInterval(() => {
+      showcaseAttributeIndex = (showcaseAttributeIndex + 1) % ATTRIBUTES.length;
+      setAttribute(ATTRIBUTES[showcaseAttributeIndex], { fromShowcase: true });
+    }, SHOWCASE_ATTRIBUTE_CYCLE_MS);
+  }
 }
 
 function stopShowcase({ resumeAfterIdle = true } = {}) {
