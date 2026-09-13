@@ -1108,8 +1108,8 @@ async function renderExperimentCompareChart() {
   const hasSublabels = entries.some((e) => e.sublabel);
   const margin = { top: 6, right: 40, bottom: 6, left: 118 };
   const plotWidth = CHART_WIDTH - margin.left - margin.right;
-  const rowHeight = hasSublabels ? 40 : 30;
-  const barGap = 8;
+  const rowHeight = hasSublabels ? 32 : 24;
+  const barGap = 6;
   const height = margin.top + entries.length * rowHeight + margin.bottom;
 
   let bars = "";
