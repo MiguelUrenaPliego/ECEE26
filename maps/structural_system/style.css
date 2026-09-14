@@ -104,13 +104,13 @@ body,
    legend must stay visible at all times, video mode included. */
 #controls {
   position: absolute;
-  top: 175px;
+  top: 135px;
   left: 16px;
   z-index: 10;
   width: fit-content;
   max-width: 300px;
   min-width: 220px;
-  max-height: calc(100vh - 191px);
+  max-height: calc(100vh - 151px);
   overflow-y: auto;
   border-radius: 14px;
   padding: 22px;
@@ -146,7 +146,7 @@ body,
 }
 
 #controls h1 {
-  font-size: 1.6rem;
+  font-size: 1.3rem;
   margin: 0 0 4px;
   color: var(--text);
 }
@@ -366,7 +366,7 @@ body,
 }
 
 #legend h2 {
-  font-size: 1.15rem;
+  font-size: 1rem;
   margin: 0 0 10px;
   color: var(--text);
 }
@@ -442,11 +442,11 @@ body,
    past the actual chart card, reading as an oversized empty gray box. */
 #charts-panel {
   position: absolute;
-  top: 175px;
+  top: 135px;
   right: 16px;
   z-index: 10;
   width: 520px;
-  max-height: calc(100vh - 191px);
+  max-height: calc(100vh - 151px);
   overflow-y: auto;
   border-radius: 14px;
   padding: 22px;
@@ -455,8 +455,8 @@ body,
 /* comparison view (learning curve + F1 across experiments) is fine at the
    original, less-far-down position. */
 body.view-comparison #charts-panel {
-  top: 165px;
-  max-height: calc(100vh - 181px);
+  top: 125px;
+  max-height: calc(100vh - 141px);
   width: 460px;
 }
 
@@ -472,8 +472,8 @@ body.view-feature_importance #charts-panel {
    slide's actual vertical budget (the map only being 644px tall, not a
    full desktop window) or the evaluation table runs past the bottom. */
 body.view-metrics #charts-panel {
-  top: 110px;
-  max-height: calc(100vh - 126px);
+  top: 85px;
+  max-height: calc(100vh - 101px);
 }
 
 body.view-split #charts-panel {
@@ -481,7 +481,7 @@ body.view-split #charts-panel {
 }
 
 #charts-panel-content h2 {
-  font-size: 1.3rem;
+  font-size: 1.05rem;
   margin: 0 0 16px;
   color: var(--text);
 }
@@ -517,7 +517,7 @@ body.view-split #charts-panel {
   padding: 20px;
 }
 #charts-panel.large-view .chart-card h3 {
-  font-size: 1.15rem;
+  font-size: 0.95rem;
   margin-bottom: 16px;
 }
 

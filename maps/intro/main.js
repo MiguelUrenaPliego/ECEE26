@@ -73,7 +73,7 @@ const TILT_TRANSITION_MS = 1_000;
 const ORBIT_DEG_PER_SEC = 3;
 const TILT_PITCH = 58; // same hard-but-not-extreme tilt for both the default view's 2D->3D transition and the attributes tour
 const SHOWCASE_IDLE_RESUME_MS = 30_000;
-const LABEL_ZOOM_THRESHOLD = 13; // below this, show the country marker instead of per-dataset labels/outlines
+const LABEL_ZOOM_THRESHOLD = 9; // below this, show the country marker instead of per-dataset labels/outlines
 
 const WORLD_CENTER = { lng: 10, lat: 20 };
 const WORLD_ZOOM = 1.3;
