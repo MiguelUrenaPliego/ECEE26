@@ -5,7 +5,7 @@
 :root {
   color-scheme: light;
   font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-  font-size: 17px;
+  font-size: 19px;
 
   --bg: #eef1f3;
   --panel: rgba(255, 255, 255, 0.72);
@@ -89,11 +89,13 @@ body,
    legend must stay visible at all times, video mode included. */
 #controls {
   position: absolute;
-  top: 118px;
+  top: 150px;
   left: 16px;
   z-index: 10;
-  width: 300px;
-  max-height: calc(100vh - 134px);
+  width: fit-content;
+  max-width: 300px;
+  min-width: 220px;
+  max-height: calc(100vh - 166px);
   overflow-y: auto;
   border-radius: 14px;
   padding: 22px;
@@ -425,14 +427,21 @@ body,
    past the actual chart card, reading as an oversized empty gray box. */
 #charts-panel {
   position: absolute;
-  top: 118px;
+  top: 150px;
   right: 16px;
   z-index: 10;
   width: 520px;
-  max-height: calc(100vh - 134px);
+  max-height: calc(100vh - 166px);
   overflow-y: auto;
   border-radius: 14px;
   padding: 22px;
+}
+
+/* comparison view (learning curve + F1 across experiments) is fine at the
+   original, less-far-down position. */
+body.view-comparison #charts-panel {
+  top: 118px;
+  max-height: calc(100vh - 134px);
 }
 
 #charts-panel-content h2 {

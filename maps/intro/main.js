@@ -26,7 +26,7 @@
 // from maps/shape_parameters/main.js). Dataset bounds are a concave hull
 // (turf.concave, falling back to convex) over building centroids, not a
 // bounding box, so the outline actually follows the survey footprint.
-const { GeoJsonLayer, TextLayer } = deck;
+const { GeoJsonLayer, TextLayer, ScatterplotLayer } = deck;
 const { MapboxOverlay } = deck;
 
 const STRUCTURAL_ROOT = "../../data/structural_system";
@@ -35,7 +35,8 @@ const DATASETS = [
   { id: "quisquella", label: "Ensanche Quisquella", short: "Quisquella", accent: "#e2a33f" },
   { id: "naco", label: "Centro", short: "Centro", accent: "#43b6c9" },
 ];
-const COUNTRY_LABEL = "Santo Domingo, Dominican Republic";
+const COUNTRY_LABEL = "Santo Domingo";
+const COUNTRY_MARKER_COLOR = [196, 30, 30];
 
 // URL params (attributes view only): ?view=attributes[&theme=dark][&plots=0]
 // -- theme and plots are independent toggles so any combination is
@@ -344,6 +345,13 @@ function setIs3D(value) {
   if (value) {
     map.dragRotate.enable();
     map.touchZoomRotate.enableRotation();
+    // 3D is only ever entered already at city-level zoom (the world view
+    // is always flat/2D), so the "Santo Domingo, Dominican Republic"
+    // marker -- which only makes sense zoomed all the way out -- should
+    // never still be showing once 3D activates, even if the zoom-based
+    // 'zoom' listener hasn't fired yet (e.g. a manual 3D toggle right as
+    // the lead-in flyTo is still settling).
+    if (!BARE_VIEW) state.labelsVisible = true;
   } else {
     map.dragRotate.disable();
     map.touchZoomRotate.disableRotation();
@@ -589,6 +597,28 @@ function renderLayers() {
       }),
     );
   } else {
+    // A red pin + short "Santo Domingo" label -- only shown zoomed all the
+    // way out (world/lead-in view). Both go away together, driven by the
+    // same state.labelsVisible gate this whole branch is already behind:
+    // it flips true (hiding this branch) once zoom crosses
+    // LABEL_ZOOM_THRESHOLD, and setIs3D(true) also forces it true the
+    // moment 3D activates, even before the zoom-based listener would have
+    // caught up.
+    const markerData = [{ position: combinedCentroid() }];
+    layers.push(
+      new ScatterplotLayer({
+        id: "country-marker",
+        data: markerData,
+        getPosition: (d) => d.position,
+        getFillColor: COUNTRY_MARKER_COLOR,
+        getRadius: 7,
+        radiusUnits: "pixels",
+        stroked: true,
+        getLineColor: [255, 255, 255, 255],
+        lineWidthUnits: "pixels",
+        getLineWidth: 2,
+      }),
+    );
     layers.push(
       new TextLayer({
         id: "country-label",
@@ -600,8 +630,9 @@ function renderLayers() {
         sizeUnits: "pixels",
         fontFamily: "system-ui, -apple-system, 'Segoe UI', sans-serif",
         fontWeight: 700,
-        getTextAnchor: "middle",
+        getTextAnchor: "start",
         getAlignmentBaseline: "center",
+        getPixelOffset: [12, 0],
         background: true,
         backgroundPadding: [10, 6],
         getBackgroundColor: [255, 255, 255, 220],

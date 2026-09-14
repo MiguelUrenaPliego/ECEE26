@@ -145,6 +145,11 @@ const VIEW_PRESETS = {
 };
 const URL_PARAMS = new URLSearchParams(location.search);
 const ACTIVE_VIEW = VIEW_PRESETS[URL_PARAMS.get("view")] ? URL_PARAMS.get("view") : null;
+// Lets theme/ecee2026.css-adjacent style.css target one view specifically
+// (the comparison view's charts-panel -- learning curve + F1 across
+// experiments -- sits lower already and doesn't need the same top offset
+// every other view's charts-panel got moved down to).
+if (ACTIVE_VIEW) document.body.classList.add(`view-${ACTIVE_VIEW}`);
 const INITIAL_EXPERIMENT = (ACTIVE_VIEW && VIEW_PRESETS[ACTIVE_VIEW].defaultExperiment) || DEFAULT_EXPERIMENT;
 // &colorMode=<name>: pins the showcase to one color-by mode forever instead
 // of cycling through truth/predicted/error/uncertainty/consensus (e.g. a
