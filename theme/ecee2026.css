@@ -641,6 +641,14 @@ section.map > div.map-slot {
   object-fit: cover;
 }
 
+/* The live map's static-JPEG placeholder sits right before its <iframe> in
+   the DOM (see scripts/inject_maps.py); until the iframe actually finishes
+   loading (class="map-loaded", added by the injected script), stay hidden
+   so the placeholder shows through instead of a blank/white frame. */
+section.map > iframe[data-map-name]:not(.map-loaded) {
+  visibility: hidden;
+}
+
 section.map header {
   display: none;
 }

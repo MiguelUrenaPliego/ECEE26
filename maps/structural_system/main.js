@@ -584,7 +584,7 @@ function renderLegend() {
 // ---------------------------------------------------------------------------
 // Chart helpers (plain inline SVG, no charting library -- same pattern as
 // every other map in this project).
-const CHART_WIDTH = 220;
+const CHART_WIDTH = 300;
 const CHART_HEIGHT = 130;
 const CHART_MARGIN = { top: 26, right: 10, bottom: 46, left: 34 };
 
@@ -951,7 +951,7 @@ const FEATURE_NAME_SHORTENINGS = [
 function shortenFeatureName(name) {
   let s = name;
   for (const [pattern, replacement] of FEATURE_NAME_SHORTENINGS) s = s.replace(pattern, replacement);
-  return s.length > 15 ? s.slice(0, 14) + "…" : s;
+  return s.length > 14 ? s.slice(0, 13) + "…" : s;
 }
 
 function renderFeatureImportance() {
@@ -963,7 +963,7 @@ function renderFeatureImportance() {
     .slice(0, 10);
   const maxRank = Math.max(...entries.map(([, v]) => v));
 
-  const margin = { top: 10, right: 34, bottom: 10, left: 92 };
+  const margin = { top: 10, right: 34, bottom: 10, left: 124 };
   const rowHeight = 20;
   const plotWidth = CHART_WIDTH - margin.left - margin.right;
   const height = margin.top + entries.length * rowHeight + margin.bottom;
@@ -972,7 +972,7 @@ function renderFeatureImportance() {
   entries.forEach(([name, rank], i) => {
     const barWidth = Math.max(2, plotWidth * (1 - rank / (maxRank * 1.1)));
     const y = margin.top + i * rowHeight;
-    bars += `<text x="${margin.left - 6}" y="${y + rowHeight / 2 + 4}" text-anchor="end" class="chart-axis-label">${shortenFeatureName(name)}</text>`;
+    bars += `<text x="0" y="${y + rowHeight / 2 + 4}" text-anchor="start" class="chart-axis-label">${shortenFeatureName(name)}</text>`;
     bars += `<rect x="${margin.left}" y="${y + 3}" width="${barWidth}" height="${rowHeight - 7}" fill="#3987e5" rx="2"></rect>`;
     bars += `<text x="${margin.left + barWidth + 4}" y="${y + rowHeight / 2 + 4}" text-anchor="start" class="chart-axis-label">${rank.toFixed(1)}</text>`;
   });
@@ -1111,8 +1111,13 @@ async function renderExperimentCompareChart() {
   // A "no prior"/"with prior" sublabel goes on its own line below the
   // experiment name rather than appended inline, which was overflowing.
   const hasSublabels = entries.some((e) => e.sublabel);
-  const margin = { top: 6, right: 40, bottom: 6, left: 118 };
-  const plotWidth = CHART_WIDTH - margin.left - margin.right;
+  // Wider than CHART_WIDTH (and its own margin.left, well past the other
+  // charts' -- the longest experiment label, "No roof, code & year", needs
+  // more room than any of them use, or it overflows past the chart's own
+  // left edge instead of wrapping.
+  const width = 340;
+  const margin = { top: 6, right: 40, bottom: 6, left: 175 };
+  const plotWidth = width - margin.left - margin.right;
   const rowHeight = hasSublabels ? 32 : 24;
   const barGap = 6;
   const height = margin.top + entries.length * rowHeight + margin.bottom;
@@ -1131,7 +1136,7 @@ async function renderExperimentCompareChart() {
     bars += `<text x="${margin.left + barWidth + 6}" y="${y + barHeight / 2 + 4}" text-anchor="start" class="chart-bar-label">${e.pct}%</text>`;
   });
 
-  container.innerHTML = `<svg viewBox="0 0 ${CHART_WIDTH} ${height}">${bars}</svg>`;
+  container.innerHTML = `<svg viewBox="0 0 ${width} ${height}">${bars}</svg>`;
 }
 
 // ---------------------------------------------------------------------------

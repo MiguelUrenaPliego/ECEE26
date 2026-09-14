@@ -64,7 +64,18 @@ FALLBACK_SCRIPT = """
   function unload(iframe) {
     if (iframe.dataset.fellBack) return;
     iframe.removeAttribute('src');
+    iframe.classList.remove('map-loaded');
     liveOrder = liveOrder.filter(function (x) { return x !== iframe; });
+    // Put the placeholder JPEG back so scrolling back to this slide later
+    // shows it again while the iframe reloads, instead of a blank frame.
+    var name = iframe.getAttribute('data-map-name');
+    if (name && !(iframe.previousElementSibling && iframe.previousElementSibling.classList.contains('map-placeholder'))) {
+      var placeholder = document.createElement('img');
+      placeholder.src = './figures/maps_gif/' + name + '.jpg';
+      placeholder.alt = name.replace(/_/g, ' ') + ' map (loading)';
+      placeholder.className = 'map-placeholder ' + iframe.className.replace('map-loaded', '').trim();
+      iframe.before(placeholder);
+    }
   }
 
   function load(iframe, name) {
@@ -84,7 +95,19 @@ FALLBACK_SCRIPT = """
       .then(function (r) { if (!r.ok) fallback(iframe, name); })
       .catch(function () { fallback(iframe, name); });
     var loaded = false;
-    iframe.addEventListener('load', function () { loaded = true; }, { once: true });
+    // While the iframe itself is loading (its own JS/data fetches, not just
+    // the initial document), the static JPEG placeholder sitting right
+    // behind it stays visible -- swap it away only once the map is
+    // actually ready, instead of showing a blank/white frame in the
+    // meantime.
+    iframe.addEventListener('load', function () {
+      loaded = true;
+      iframe.classList.add('map-loaded');
+      var placeholder = iframe.previousElementSibling;
+      if (placeholder && placeholder.classList.contains('map-placeholder')) {
+        placeholder.remove();
+      }
+    }, { once: true });
     setTimeout(function () { if (!loaded) fallback(iframe, name); }, 6000);
   }
 
@@ -165,7 +188,13 @@ def main():
             c for c in classes.split() if c not in ("map-slot", f"map-slot--{name}")
         )
         class_attr = f' class="{rest_classes}"' if rest_classes else ""
-        return f'<iframe data-map-src="./{url}" data-map-name="{name}"{class_attr}></iframe>'
+        placeholder_class = f' class="map-placeholder {rest_classes}"' if rest_classes else ' class="map-placeholder"'
+        placeholder = (
+            f'<img src="./figures/maps_gif/{name}.jpg" alt="{name.replace("_", " ")} map (loading)"'
+            f'{placeholder_class}>'
+        )
+        iframe = f'<iframe data-map-src="./{url}" data-map-name="{name}"{class_attr}></iframe>'
+        return placeholder + iframe
 
     new_html, n = SLOT_RE.subn(repl, html)
     print(f"Replaced {n} map-slot placeholder(s) with real <iframe>s")

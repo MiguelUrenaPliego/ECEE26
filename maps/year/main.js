@@ -393,7 +393,7 @@ function renderLayerControls() {
 // code-quality mapping table (static reference), and the code-quality
 // breakdown. Plain inline SVG, no charting library, same pattern as every
 // other map's charts.
-const CHART_WIDTH = 220;
+const CHART_WIDTH = 260;
 const CHART_HEIGHT = 130;
 const CHART_MARGIN = { top: 26, right: 6, bottom: 30, left: 34 };
 const YEAR_BUCKET_SIZE = 5;

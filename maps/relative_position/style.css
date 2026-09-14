@@ -5,7 +5,7 @@
 :root {
   color-scheme: light;
   font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-  font-size: 19px;
+  font-size: 21px;
 
   --bg: #eef1f3;
   --panel: rgba(255, 255, 255, 0.72);
@@ -89,13 +89,13 @@ body,
    legend must stay visible at all times, video mode included. */
 #controls {
   position: absolute;
-  top: 150px;
+  top: 175px;
   left: 16px;
   z-index: 10;
   width: fit-content;
   max-width: 300px;
   min-width: 220px;
-  max-height: calc(100vh - 166px);
+  max-height: calc(100vh - 191px);
   overflow-y: auto;
   border-radius: 14px;
   padding: 22px;
@@ -395,11 +395,11 @@ body,
 /* ---------- charts panel (right side, persistent) ---------- */
 #charts-panel {
   position: absolute;
-  top: 150px;
+  top: 175px;
   right: 16px;
   z-index: 10;
   width: 340px;
-  max-height: calc(100vh - 166px);
+  max-height: calc(100vh - 191px);
   overflow-y: auto;
   border-radius: 14px;
   padding: 22px;
@@ -416,6 +416,7 @@ body,
   border: 1px solid var(--border);
   border-radius: 10px;
   padding: 16px;
+  width: 100%;
   margin-bottom: 18px;
 }
 

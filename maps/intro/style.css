@@ -4,7 +4,7 @@
 :root {
   color-scheme: light;
   font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-  font-size: 19px;
+  font-size: 21px;
 
   --bg: #eef1f3;
   --panel: rgba(255, 255, 255, 0.72);

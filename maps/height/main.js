@@ -516,7 +516,7 @@ function renderHeightErrorChart() {
   </svg>`;
 
   const rmse = Math.sqrt(errors.reduce((sum, e) => sum + e * e, 0) / errors.length);
-  rmseEl.textContent = `RMSE across ${total} buildings: ${rmse.toFixed(2)} m`;
+  rmseEl.textContent = `RMSE: ${rmse.toFixed(2)} m`;
 }
 
 // ---------------------------------------------------------------------------

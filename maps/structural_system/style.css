@@ -5,7 +5,7 @@
 :root {
   color-scheme: light;
   font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-  font-size: 19px;
+  font-size: 21px;
 
   --bg: #eef1f3;
   --panel: rgba(255, 255, 255, 0.72);
@@ -89,13 +89,13 @@ body,
    legend must stay visible at all times, video mode included. */
 #controls {
   position: absolute;
-  top: 150px;
+  top: 175px;
   left: 16px;
   z-index: 10;
   width: fit-content;
   max-width: 300px;
   min-width: 220px;
-  max-height: calc(100vh - 166px);
+  max-height: calc(100vh - 191px);
   overflow-y: auto;
   border-radius: 14px;
   padding: 22px;
@@ -427,11 +427,11 @@ body,
    past the actual chart card, reading as an oversized empty gray box. */
 #charts-panel {
   position: absolute;
-  top: 150px;
+  top: 175px;
   right: 16px;
   z-index: 10;
   width: 520px;
-  max-height: calc(100vh - 166px);
+  max-height: calc(100vh - 191px);
   overflow-y: auto;
   border-radius: 14px;
   padding: 22px;
@@ -440,8 +440,20 @@ body,
 /* comparison view (learning curve + F1 across experiments) is fine at the
    original, less-far-down position. */
 body.view-comparison #charts-panel {
-  top: 118px;
-  max-height: calc(100vh - 134px);
+  top: 140px;
+  max-height: calc(100vh - 156px);
+  width: 460px;
+}
+
+/* metrics is the only view wide enough to need the full 520px (confusion
+   matrix + evaluation table side by side) -- the others show a single
+   simpler chart and don't need that much width. */
+body.view-feature_importance #charts-panel {
+  width: 380px;
+}
+
+body.view-split #charts-panel {
+  width: 400px;
 }
 
 #charts-panel-content h2 {
@@ -490,6 +502,7 @@ body.view-comparison #charts-panel {
   border: 1px solid var(--border);
   border-radius: 10px;
   padding: 16px;
+  width: 100%;
 }
 
 .chart-card h3 {
