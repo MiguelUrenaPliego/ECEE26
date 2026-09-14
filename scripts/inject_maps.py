@@ -158,6 +158,76 @@ NAV_CLICK_SCRIPT = """
 """.strip()
 
 
+# A one-time dismissible notice shown when the deck first loads, over the
+# title slide -- the maps' underlying per-building data (structural system,
+# height, roof material, year, etc.) is invented/perturbed, not the real
+# not-yet-published survey data (see scripts/obscure_building_data.py), so
+# this makes that explicit to anyone browsing the live site rather than
+# watching the actual talk.
+DATA_WARNING_SCRIPT = """
+<style data-injected-by="inject_maps.py">
+#data-warning-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(20, 24, 28, 0.72);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+#data-warning-overlay.hidden {
+  display: none;
+}
+#data-warning-box {
+  background: #ffffff;
+  color: #14181d;
+  max-width: 520px;
+  margin: 24px;
+  padding: 28px 32px;
+  border-radius: 12px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+  text-align: center;
+}
+#data-warning-box p {
+  font-size: 17px;
+  line-height: 1.5;
+  margin: 0 0 20px;
+}
+#data-warning-box button {
+  background: #c50e1f;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 28px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+#data-warning-box button:hover {
+  background: #a50c1a;
+}
+</style>
+<script data-injected-by="inject_maps.py">
+(function () {
+  var overlay = document.createElement('div');
+  overlay.id = 'data-warning-overlay';
+  overlay.innerHTML =
+    '<div id="data-warning-box">' +
+      '<p>This presentation does not contain any real study data. ' +
+      'It will be added once the preprint of our Santo Domingo exposure ' +
+      'publication is finished.</p>' +
+      '<button type="button">Continue</button>' +
+    '</div>';
+  document.body.appendChild(overlay);
+  overlay.querySelector('button').addEventListener('click', function () {
+    overlay.classList.add('hidden');
+  });
+})();
+</script>
+""".strip()
+
+
 def load_url_by_name():
     manifest = json.loads(MANIFEST_PATH.read_text())["maps"]
     return {m["name"]: m["url"] for m in manifest}
@@ -203,7 +273,7 @@ def main():
 
     if 'data-injected-by="inject_maps.py"' not in new_html:
         new_html = new_html.replace(
-            "</body>", f"{FALLBACK_SCRIPT}\n{NAV_CLICK_SCRIPT}\n</body>", 1
+            "</body>", f"{FALLBACK_SCRIPT}\n{NAV_CLICK_SCRIPT}\n{DATA_WARNING_SCRIPT}\n</body>", 1
         )
 
     path.write_text(new_html, encoding="utf-8")
