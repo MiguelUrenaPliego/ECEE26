@@ -1,0 +1,65 @@
+# Ignore everything
+*
+
+# Allow selected directories and everything inside
+!maps/
+!maps/**
+
+!figures/
+!figures/**
+
+!assets/
+!assets/**
+
+!logos/
+!logos/**
+
+!theme/
+!theme/**
+
+!scripts/
+!scripts/**
+
+!.vscode/
+!.vscode/**
+
+!data/
+!data/**
+
+# .gpkg files carry real per-building data far richer than the JSON/GeoJSON
+# files (many more experiment/model columns) and aren't fetched by any map
+# app at runtime (confirmed: nothing under maps/ references *.gpkg) — pure
+# unused source/intermediate data, so excluded outright rather than
+# obscured. (data/unified/naco.gpkg also exceeds GitHub's 100MB push limit
+# regardless.)
+data/unified/*.gpkg
+data/structural_system/*/buildings.gpkg
+
+# The REAL per-building survey data (structural system, height, roof
+# material, year, etc.) — data/ itself only ever holds the obscured/
+# perturbed version (see scripts/obscure_building_data.py) that's safe to
+# publish; this local-only backup must never be tracked. Already caught by
+# the leading "ignore everything" pattern above (this repo has no `!data_original/`
+# allowlist entry), but listed explicitly so it stays excluded even if that
+# changes later.
+data_original/
+data_original/**
+
+# The obscuring method itself stays private too (knowing exactly how
+# data/ was perturbed makes it easier to reason backward toward the real
+# values it was perturbed from).
+scripts/obscure_building_data.py
+
+# Python bytecode cache — no reason to ever track this.
+__pycache__/
+**/__pycache__/**
+
+# Allow selected root files
+!.gitignore
+!presentation.md
+!presentation.static.md
+!index.html
+!maps_manifest.json
+!check_large_files.py
+!export.md
+!Urena_Pliego_et_al.pdf
