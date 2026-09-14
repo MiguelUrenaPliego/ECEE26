@@ -69,6 +69,21 @@ body,
   color: var(--text);
 }
 
+/* This app is only ever really viewed embedded in the deck's fixed
+   1280x644 map iframe (theme/ecee2026.css's section.map > iframe box), not
+   as a full standalone desktop tab -- every panel/font size here is tuned
+   in fixed CSS px against a realistic ~1600px-wide desktop context (also
+   what scripts/capture_map_gifs.py's static JPEG captures use), so at the
+   narrower 1280 they'd otherwise come out proportionally bigger live than
+   in those captures. zoom (not transform, so vh/vw stay consistent) scales
+   the whole page back down to match once the viewport is that narrow.
+   1280 / 0.8 = 1600, matching the capture width exactly. */
+@media (max-width: 1300px) {
+  html {
+    zoom: 0.8;
+  }
+}
+
 #map {
   position: absolute;
   inset: 0;

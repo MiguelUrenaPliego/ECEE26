@@ -33,12 +33,21 @@ MANIFEST_PATH = ROOT / "maps_manifest.json"
 OUT_DIR = ROOT / "figures" / "maps_gif"
 
 # The maps size their UI panels (legend, charts, controls) in fixed CSS
-# pixels, same as any normal responsive webpage — so the browser viewport
+# pixels, same as any normal responsive webpage -- so the browser viewport
 # has to be a real desktop size, or those panels take up a much bigger
 # fraction of the screenshot than they do on an actual display. Capture at
 # a realistic desktop viewport, then downscale the *image* afterwards to
-# keep the JPEG light — that keeps the on-screen proportions correct while
+# keep the JPEG light -- that keeps the on-screen proportions correct while
 # still shrinking the file size.
+#
+# The live deck embeds every map in a much smaller, fixed 1280x644 iframe
+# (section.map > iframe, minus the 76px footer reservation -- see
+# theme/ecee2026.css), which would make these same fixed-px panels look
+# proportionally bigger live than in this capture if left alone -- that
+# mismatch is corrected on the *live* side instead (each map app's own
+# style.css zooms out to 0.8 under an embedded-width media query), not by
+# shrinking this capture down to iframe size, which just made the JPEGs
+# blurrier without actually fixing the proportion mismatch.
 VIEWPORT_WIDTH = 1600
 VIEWPORT_HEIGHT = 900
 DEVICE_SCALE_FACTOR = 2    # renders at 2x pixel density (CSS layout/proportions
