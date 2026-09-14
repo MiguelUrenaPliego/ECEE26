@@ -407,7 +407,7 @@ function renderRasterLegends(container) {
 // (ceil(height / 3)), 1..9 then "10+". Plain inline SVG, same pattern as the
 // roof map's charts (no charting library).
 const CHART_WIDTH = 280;
-const CHART_HEIGHT = 190;
+const CHART_HEIGHT = 165;
 const CHART_MARGIN = { top: 10, right: 6, bottom: 26, left: 30 };
 const FLOOR_BUCKETS = ["1", "2", "3", "4", "5", "6+"];
 

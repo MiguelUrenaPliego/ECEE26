@@ -110,7 +110,7 @@ body,
   width: fit-content;
   max-width: 300px;
   min-width: 220px;
-  max-height: calc(100vh - 151px);
+  max-height: calc((100vh - 116px) * 1.25);
   overflow-y: auto;
   border-radius: 14px;
   padding: 22px;
@@ -446,7 +446,7 @@ body,
   right: 16px;
   z-index: 10;
   width: 340px;
-  max-height: calc(100vh - 151px);
+  max-height: calc((100vh - 116px) * 1.25);
   overflow-y: auto;
   border-radius: 14px;
   padding: 22px;
@@ -462,7 +462,7 @@ body,
   background: var(--panel-solid);
   border: 1px solid var(--border);
   border-radius: 10px;
-  padding: 16px;
+  padding: 12px;
   width: 100%;
 }
 

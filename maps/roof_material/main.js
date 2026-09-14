@@ -312,7 +312,7 @@ function renderLegend() {
 // project's no-build-step templates). Both read straight off the JSON
 // files copied alongside each dataset's rasters.
 const CHART_WIDTH = 360;
-const CHART_HEIGHT = 200;
+const CHART_HEIGHT = 175;
 const CHART_MARGIN = { top: 10, right: 10, bottom: 34, left: 36 };
 
 function renderPixelCountChart() {

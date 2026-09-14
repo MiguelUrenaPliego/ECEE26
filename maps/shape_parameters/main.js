@@ -433,7 +433,7 @@ function renderLegend() {
 // value instead, so the exceeding tail stays visible). The line is the % of
 // buildings "that value or worse", read left (near 100%) to right (near 0%).
 const CHART_WIDTH = 280;
-const CHART_HEIGHT = 190;
+const CHART_HEIGHT = 165;
 const CHART_MARGIN = { top: 14, right: 10, bottom: 26, left: 34 };
 const CHART_STEPS = 40;
 
