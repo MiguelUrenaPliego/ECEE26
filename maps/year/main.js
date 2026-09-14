@@ -557,11 +557,25 @@ onBuildingClick = selectBuilding;
 // ---------------------------------------------------------------------------
 // Attribute (color-by) switching.
 let attributeDropdown = null;
+// The charts panel used to always show all 3 cards at once (buildings-per-
+// year, the code-quality mapping table, buildings-per-code-quality) --
+// cramped and mostly irrelevant to whichever attribute is actually being
+// shown. Now it shows just the group that matches the active attribute:
+// "year" (buildings-per-year) while first/last-construction-year is active,
+// "code" (the mapping table + breakdown) while code-quality is active.
+function applyChartVisibility(attribute) {
+  const group = attribute.kind === "categorical" ? "code" : "year";
+  document.querySelectorAll(".chart-card[data-chart-group]").forEach((card) => {
+    card.classList.toggle("hidden", card.dataset.chartGroup !== group);
+  });
+}
+
 function setAttribute(attribute, { fromShowcase = false } = {}) {
   state.attribute = attribute;
   attributeDropdown?.setValue(attribute.name);
   renderLegend();
   renderLayer();
+  applyChartVisibility(attribute);
   if (!fromShowcase) stopShowcase({ resumeAfterIdle: true });
 }
 

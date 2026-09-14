@@ -689,8 +689,12 @@ function renderCompositionChart() {
   const keys = compositionOrder.filter((k) => predCounts[k] || trainCounts[k] || testCounts[k]);
 
   const margin = { ...CHART_MARGIN };
+  // Taller than the shared CHART_HEIGHT -- 3 series x up to 4 classes (12
+  // skinny bars, each needing its own %-label above it) reads as squashed
+  // at the shared height every other chart in this file uses.
+  const chartHeight = 190;
   const plotWidth = CHART_WIDTH - margin.left - margin.right;
-  const plotHeight = CHART_HEIGHT - margin.top - margin.bottom;
+  const plotHeight = chartHeight - margin.top - margin.bottom;
   const groupGap = 10;
   const groupWidth = (plotWidth - groupGap * (keys.length - 1)) / keys.length;
   const barGap = 2;
@@ -744,7 +748,7 @@ function renderCompositionChart() {
   const seriesLegend = series
     .map((s) => `<span style="display:inline-flex;align-items:center;gap:4px;margin-right:10px"><span style="width:10px;height:10px;border-radius:2px;background:#9aa5ac;opacity:${s.opacity};display:inline-block"></span>${s.tag}</span>`)
     .join("");
-  container.innerHTML = `<svg viewBox="0 0 ${CHART_WIDTH} ${CHART_HEIGHT}">
+  container.innerHTML = `<svg viewBox="0 0 ${CHART_WIDTH} ${chartHeight}">
     <line x1="${margin.left}" y1="${plotBottom}" x2="${CHART_WIDTH - margin.right}" y2="${plotBottom}" stroke="rgba(255,255,255,0.18)"></line>
     <line x1="${margin.left}" y1="${margin.top}" x2="${margin.left}" y2="${plotBottom}" stroke="rgba(255,255,255,0.18)"></line>
     ${yAxisLabels}

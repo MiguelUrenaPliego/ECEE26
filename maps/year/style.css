@@ -395,11 +395,11 @@ body,
 /* ---------- charts panel (right side, persistent) ---------- */
 #charts-panel {
   position: absolute;
-  top: 118px;
+  top: 175px;
   right: 16px;
   z-index: 10;
   width: 340px;
-  max-height: calc(100vh - 134px);
+  max-height: calc(100vh - 191px);
   overflow-y: auto;
   border-radius: 14px;
   padding: 22px;

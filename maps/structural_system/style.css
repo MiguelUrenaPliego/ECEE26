@@ -440,8 +440,8 @@ body,
 /* comparison view (learning curve + F1 across experiments) is fine at the
    original, less-far-down position. */
 body.view-comparison #charts-panel {
-  top: 140px;
-  max-height: calc(100vh - 156px);
+  top: 165px;
+  max-height: calc(100vh - 181px);
   width: 460px;
 }
 
